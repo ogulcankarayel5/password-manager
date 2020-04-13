@@ -15,7 +15,9 @@ const connectDatabase = require('./api/db/mongodb/connection');
 // import customErrorHandler from './api/middlewares/errors/customErrorHandler';
 // import connectDatabase from './api/db/mongodb/connection';
 const app = express();
-dotenv.config();
+dotenv.config({
+  path:path.resolve(__dirname,'../.env')
+});
 connectDatabase();
 const PORT = process.env.PORT || 5000;
 
