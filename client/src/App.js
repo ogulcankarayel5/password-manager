@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
 
+import Theme from "./components/utils/Theme";
+import { GlobalStyle } from "./utils/globalStyle";
 
 function App() {
   return (
-    <div>
-     
-    </div>
+    <Theme>
+      <GlobalStyle />
+      
+    </Theme>
   );
 }
 
