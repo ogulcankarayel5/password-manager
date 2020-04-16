@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from "../../utils/breakPoints";
+
 
 export const Container = styled.div`
   width: 100%;
@@ -8,16 +8,16 @@ export const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
 
-  @media ${device.mobile} {
+  @media (min-width:576px) {
     max-width: 540px;
   }
-  @media ${device.tablet} {
+  @media(min-width:768px) {
     max-width: 720px;
   }
-  @media ${device.desktop} {
+  @media (min-width:992px) {
     max-width: 960px;
   }
-  @media ${device.large} {
+  @media (min-width:1200px) {
     max-width: 1140px;
   }
 `;

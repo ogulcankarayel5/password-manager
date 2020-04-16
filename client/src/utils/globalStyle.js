@@ -16,11 +16,12 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 html{
-  font-size:30px;
+  font-size:10px;
 }
 
 body{
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-family:'sans-serif'
 }
+
 
 `;
