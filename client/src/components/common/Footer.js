@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 const FooterContainer = styled.div`
-background:yellow;
+background:grey;
 grid-column:1/4;
 grid-row:3/4;
 `

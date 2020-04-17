@@ -20,8 +20,14 @@ html{
 }
 
 body{
-    font-family:'sans-serif'
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
+a{
+  text-decoration:none;
+}
+li{
+  list-style:none;
+}
 
 `;
