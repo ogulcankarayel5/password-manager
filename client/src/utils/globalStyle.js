@@ -1,12 +1,19 @@
 import { createGlobalStyle } from "styled-components";
-
-
+import IndieFlower from '../assets/fonts/IndieFlower-Regular.ttf';
+import SourceSansPro from '../assets/fonts/SourceSansPro-Regular.ttf';
 export const GlobalStyle = createGlobalStyle`
 
 @font-face {
-  font-family:'India';
-  src: url("../assets/fonts/IndieFlower-Regular.ttf");
+  font-family:'India Flower';
+  src: url(${IndieFlower}) format('truetype');
   font-style: normal;
+  font-weight:300;
+  font-display:auto;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url(${SourceSansPro}) format('truetype');
 }
 *{
   margin:0;
@@ -20,7 +27,7 @@ html{
 }
 
 body{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    font-family:'Source Sans Pro';
 }
 
 a{

@@ -10,7 +10,7 @@ grid-column:2/3;
 grid-row:1/2;
 display:flex;
 align-items:center;
-
+font-family:${props=>props.theme.fonts.india}
 `
 
 
