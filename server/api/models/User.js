@@ -11,12 +11,14 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name: {
     type: String,
-    required: [true, "Please provide a name"],
+    unique:true,
+    required:true
+    
   },
   email: {
     type: String,
-    required: [true, "Please provide a email"],
-    unique: true,
+    unique:true,
+    required:true,
     match: [
       /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
       "Please provide a valid email",
@@ -24,11 +26,13 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    minlength: [4, "Please provide a password with min length 6"],
-    required: [true, "Please provide a password"],
+    
     //bilgileri çektiğimiz zaman password görünmeyecek
     select: false,
   },
+  googleId:{
+    type:String
+  }
 });
 
 UserSchema.pre("save", function (next) {

@@ -5,11 +5,10 @@ const User = require('../../../models/User');
 const registerDb = async (userInfo) => {
 
     
-    return await User.create(userInfo);
-
-    
+    const user= await User.create(userInfo);
+    return user;
+   
 }
-
 const loginDb = async (userInfo) => {
     const {email}=userInfo;
     return await User.findOne({email}).select("+password");
