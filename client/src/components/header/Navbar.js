@@ -33,7 +33,7 @@ const NavList = styled.ul`
 
 
 `;
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <Nav>
       <div>
@@ -57,4 +57,3 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;

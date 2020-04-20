@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import IndieFlower from '../assets/fonts/IndieFlower-Regular.ttf';
 import SourceSansPro from '../assets/fonts/SourceSansPro-Regular.ttf';
+
 export const GlobalStyle = createGlobalStyle`
 
 @font-face {

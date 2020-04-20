@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import MainLeftContent from './MainLeftContent';
-import MainRightContent from './MainRightContent';
+import{ MainLeftContent,MainRightContent} from './';
+
 
 const MainContainer = styled.div`
 
@@ -14,7 +14,7 @@ justify-content:center;
 
 
 `
-const MainContent = () => {
+export const MainContent = () => {
     return (
         <MainContainer>
            
@@ -27,12 +27,4 @@ const MainContent = () => {
     )
 }
 
-export default MainContent
 
-/**background-color: ${props =>
-  ({
-    primary: 'blue',
-    danger: 'red',
-    warning: 'yellow'
-  })[props.type]
-} */

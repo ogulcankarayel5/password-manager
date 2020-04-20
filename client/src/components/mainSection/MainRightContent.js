@@ -12,7 +12,7 @@ height:auto;
 
 `
 
-const MainRightContent = () => {
+export const MainRightContent = () => {
     return (
       <RightContainer>
            <ContentImage src={bg}/>
@@ -20,4 +20,3 @@ const MainRightContent = () => {
     )
 }
 
-export default MainRightContent

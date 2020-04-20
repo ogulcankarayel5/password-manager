@@ -20,6 +20,7 @@ const app = express();
 dotenv.config({
   path:path.resolve(__dirname,'../.env')
 });
+
 connectDatabase();
 const PORT = process.env.PORT || 5000;
 require('./api/services/passport/passport');

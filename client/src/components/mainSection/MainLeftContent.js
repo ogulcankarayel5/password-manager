@@ -1,7 +1,7 @@
 import React from "react";
 import styled,{css} from "styled-components";
-import { MAIN_TITLE, MAIN_TEXT } from "../../utils/constants";
-import { Title, Text,Button} from "../utils/MultipleComponent";
+import { stringConstants } from "../../constants";
+import { Title, Text,Button} from "../utils";
 
 const LeftContainer = styled.div`
   display: flex;
@@ -36,15 +36,15 @@ const MainButton = styled(Button)`
 
 `
 
-const MainLeftContent = () => {
+export const MainLeftContent = () => {
   return (
       
     <LeftContainer>
-      <MainTitle>{MAIN_TITLE}</MainTitle>
-      <MainParagraph>{MAIN_TEXT}</MainParagraph>
+      <MainTitle>{stringConstants.MAIN_TITLE}</MainTitle>
+      <MainParagraph>{stringConstants.MAIN_TEXT}</MainParagraph>
       <MainButton to="/" padding={'2.5rem 6rem'} fontWeight={700}>Get Started</MainButton>
     </LeftContainer>
   );
 };
 
-export default MainLeftContent;
+

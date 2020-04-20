@@ -1,13 +1,12 @@
 import React from 'react'
 import { Switch,Route } from "react-router-dom";
-import AppRoute from './AppRoute';
-import CommonLayout from '../components/layout/CommonLayout';
-import HomePage from '../pages/HomePage';
-import NotFound from '../pages/NotFound';
+import {AppRoute} from './AppRoute';
+import {CommonLayout} from '../components';
+import {HomePage,NotFound} from '../pages';
 
 
 
-const MainRouter = () => {
+export const MainRouter = () => {
 
     
     return (
@@ -20,4 +19,4 @@ const MainRouter = () => {
     )
 }
 
-export default MainRouter
+

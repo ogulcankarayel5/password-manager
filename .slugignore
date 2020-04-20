@@ -1,0 +1,4 @@
+# Heres a comment
+*.psd
+*.pdf
+/spec

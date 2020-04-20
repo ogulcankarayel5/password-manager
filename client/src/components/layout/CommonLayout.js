@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
+import {Header,Footer} from "../";
+
 
 const CommonLayoutContainer = styled.div`
   height: 100vh;
@@ -10,7 +10,7 @@ const CommonLayoutContainer = styled.div`
   grid-template-rows: 1fr 4fr 1fr;
 `;
 
-const CommonLayout = ({ children }) => {
+export const CommonLayout = ({ children }) => {
   return (
     <CommonLayoutContainer>
       <Header />
@@ -22,4 +22,4 @@ const CommonLayout = ({ children }) => {
   );
 };
 
-export default CommonLayout;
+

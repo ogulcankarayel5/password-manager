@@ -7,10 +7,9 @@ const FooterContainer = styled.div`
 grid-column:1/4;
 grid-row:3/4;
 `
-const Footer = () => {
+export const Footer = () => {
     return (
        <FooterContainer></FooterContainer>
     )
 }
 
-export default Footer

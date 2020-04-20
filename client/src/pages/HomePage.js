@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import MainContent from '../components/mainSection/MainContent';
+import {MainContent} from '../components';
 
 
-const HomePage = () => {
+export const HomePage = () => {
     return (
        
         <MainContent/>
@@ -12,4 +12,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage;
+
