@@ -22,13 +22,15 @@ const sendJwt = (user, res) => {
 
 const isTokenIncluded = (authorization) => {
   return authorization && authorization.startsWith('Bearer:');
+  
 
 
 }
 
 const getAccessTokenFromHeader = authorization => {
   
-  const access_token = authorization.split(" ")[1];
+  const access_token = authorization.split(":")[1];
+  
   return access_token;
 }
 

@@ -5,9 +5,15 @@ import {MainContent} from '../components';
 
 
 export const HomePage = () => {
+
+
     return (
-       
+       <>
+        
         <MainContent/>
+       
+        
+       </>
       
     )
 }

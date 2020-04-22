@@ -5,7 +5,7 @@ const {googleAuthController} = require("../controllers/passport/passport-control
 const router = express.Router();
 const passport = require("passport");
 const { userValidationRules, validate } = require('../helpers/error/express-validator');
-
+const {getAccessToRoute} = require('../middlewares/authorization/auth');
 
 
 
@@ -17,7 +17,9 @@ router.get("/google",passport.authenticate('google',{
 }));
 
 router.get("/google/callback",passport.authenticate('google'),googleAuthController);
-
+router.get("/deneme",(req,res)=>{
+    res.json({msg:"hey"});
+})
 
 
 module.exports=router;

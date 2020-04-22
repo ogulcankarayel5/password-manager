@@ -3,7 +3,7 @@
 // import { comparePassword } from "../../helpers/input/inputHelpers";
 const {registerDb,loginDb} = require("../../db/mongodb/auth/auth-post.db");
 const CustomError = require("../../helpers/error/CustomError");
-const {comparePassword} = require("../../db/mongodb/auth/auth-post.db");
+const {comparePassword} = require("../../helpers/input/inputHelpers");
 /*
  * if you need to make calls to additional tables, data stores (Redis, for example),
  * or call an external endpoint , add them to this service

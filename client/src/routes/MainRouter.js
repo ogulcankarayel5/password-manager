@@ -6,6 +6,9 @@ import {HomePage,NotFound} from '../pages';
 
 
 
+
+
+
 export const MainRouter = () => {
 
     
@@ -13,6 +16,7 @@ export const MainRouter = () => {
        <Switch>
          
            <AppRoute exact path="/" component={HomePage} layout={CommonLayout}/>
+           
            <Route component={NotFound}/>
 
        </Switch>

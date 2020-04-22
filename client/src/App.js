@@ -1,20 +1,24 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { MainRouter } from "./routes";
 import { Theme } from "./components";
-import { GlobalStyle,store } from "./utils";
+import { GlobalStyle,store,history,setAuthToken} from "./utils";
 import { Provider } from "react-redux";
 
 
+
 function App() {
+  
+  
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <Theme>
+
           <GlobalStyle />
           <MainRouter />
         </Theme>
-      </BrowserRouter>
+      </Router>
     </Provider>
   );
 }
