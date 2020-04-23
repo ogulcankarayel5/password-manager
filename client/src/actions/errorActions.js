@@ -10,7 +10,7 @@ export const setErrors = (err) => {
 
 export const clearErrors = () => {
     return {
-        type:errorConstants.CLEAN_ERROR
+        type:errorConstants.CLEAR_ERROR
     }
 }
 

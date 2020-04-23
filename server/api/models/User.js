@@ -12,13 +12,13 @@ const UserSchema = new Schema({
   name: {
     type: String,
     unique:true,
-    required:true
+    required:[true,"Please provide a name"]
     
   },
   email: {
     type: String,
     unique:true,
-    required:true,
+    required:[true,"Please provide an email"],
     match: [
       /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
       "Please provide a valid email",

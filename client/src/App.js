@@ -14,7 +14,6 @@ function App() {
     <Provider store={store}>
       <Router history={history}>
         <Theme>
-
           <GlobalStyle />
           <MainRouter />
         </Theme>

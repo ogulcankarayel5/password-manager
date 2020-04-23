@@ -36,6 +36,7 @@ const login = (user) => async (dispatch) => {
 
     }
     catch(err){
+        console.log(err);
         dispatch(loginFailure());
         dispatch(setErrors(err));
 
