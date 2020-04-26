@@ -1,10 +1,9 @@
 import React from 'react'
+import {StatusError} from '../components'
 
 export const NotFound = () => {
     return (
-        <div>
-            404
-        </div>
+        <StatusError title={404} description={"The page doesn't exist"}/>
     )
 }
 

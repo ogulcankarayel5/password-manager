@@ -8,6 +8,7 @@ const theme = {
     headerText:"#627387", 
     mainTitle:"#2A2542",
     text:"#79899A",
+    statusErrorBackground:"#151729"
     
   },
   fonts:{
