@@ -1,27 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import img from '../../assets/images/p404.png'
-import {useOnMouseMove} from '../../hooks'
-import {Link} from 'react-router-dom';
+import img from "../../assets/images/p404.png";
+import { useOnMouseMove } from "../../hooks";
+import { Link } from "react-router-dom";
+import { Button } from "../";
+
 const StatusErrorDiv = styled.div`
-  /* 
-  top: 10%;
-  left: 10%;
-  right: 10%;
-  bottom: 10%; */
   position: absolute;
   width: 100%;
   height: 100%;
-  //border-radius: 10px;
+
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background: url(${img}), ${props=>props.theme.colors.statusErrorBackground};
+  background: url(${img}),
+    ${(props) => props.theme.colors.statusErrorBackground};
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 
   & div {
-    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -31,7 +28,6 @@ const StatusErrorDiv = styled.div`
   }
 
   & h2 {
-    position: relative;
     margin-bottom: 3rem;
     font-size: 5rem;
     color: ${(props) => props.theme.colors.background};
@@ -40,13 +36,10 @@ const StatusErrorDiv = styled.div`
 
   & p {
     color: ${(props) => props.theme.colors.background};
+    font-size: 2rem;
   }
 
   & a {
-    font-size: 1.5rem;
-    position: relative;
-    display: inline-block;
-    padding: 1rem 2.5rem;
     background: #ff0562;
     margin-top: 2.5rem;
     color: ${(props) => props.theme.colors.background};
@@ -55,14 +48,9 @@ const StatusErrorDiv = styled.div`
   }
 `;
 
-export const StatusError = React.memo(({title,description}) => {
+export const StatusError = ({ title, description }) => {
   const divRef = useRef(null);
-  const position = useOnMouseMove();
-
-  useEffect(() => {
-    divRef.current.style.backgroundPositionX = position.x + "px";
-    divRef.current.style.backgroundPositionY = position.y + "px";
-  }, [position]);
+  useOnMouseMove(divRef);
 
   return (
     <StatusErrorDiv ref={divRef}>
@@ -70,8 +58,10 @@ export const StatusError = React.memo(({title,description}) => {
         <h2>{title}</h2>
 
         <p>{description}</p>
-        <Link to="/">Home</Link>
+        <Button fontSize={"1.5rem"} to="/">
+          Get Back Home
+        </Button>
       </div>
     </StatusErrorDiv>
   );
-});
+};
