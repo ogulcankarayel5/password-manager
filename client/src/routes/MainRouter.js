@@ -1,9 +1,9 @@
 import React from 'react'
 import { Switch,Route } from "react-router-dom";
-import {AppRoute} from './AppRoute';
+import {AppRoute,ProtectedRoute} from './';
 import {CommonLayout,StatusError} from '../components';
-import {HomePage,NotFound} from '../pages';
-import image from '../assets/images/Opera Anlık Görüntü_2020-04-23_213740_dribbble.com.png';
+import {HomePage,NotFound,Unauthorized } from '../pages';
+
 
 
 
@@ -17,7 +17,7 @@ export const MainRouter = () => {
        <Switch>
          
            <AppRoute exact path="/" component={HomePage} layout={CommonLayout}/>
-           
+           <Route path="/unauthorized" component={Unauthorized}/>
            <Route path="*" component={NotFound}/>
 
        </Switch>
