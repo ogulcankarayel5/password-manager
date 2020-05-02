@@ -8,7 +8,12 @@ const theme = {
     headerText:"#627387", 
     mainTitle:"#2A2542",
     text:"#79899A",
-    statusErrorBackground:"#151729"
+    statusErrorBackground:"#151729",
+    errorButtonBackground:"#ff0562",
+    formButtonColor:"#7041EE",
+    formSocialPrimaryColor:"#4B85EB",
+    formSocialSecondaryColor:"#4E6699",
+    
     
   },
   fonts:{

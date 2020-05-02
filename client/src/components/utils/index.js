@@ -1,4 +1,4 @@
 export * from './Container';
-export * from './MultipleComponent';
+export * from './styles';
 export * from './Theme';
 

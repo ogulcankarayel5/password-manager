@@ -4,7 +4,6 @@ import img from "../../assets/images/p404.png";
 import { useOnMouseMove } from "../../hooks";
 import { Link } from "react-router-dom";
 import { Button } from "../";
-
 const StatusErrorDiv = styled.div`
   position: absolute;
   width: 100%;
@@ -40,15 +39,16 @@ const StatusErrorDiv = styled.div`
   }
 
   & a {
-    background: #ff0562;
+    
     margin-top: 2.5rem;
     color: ${(props) => props.theme.colors.background};
     border-radius: 25px;
-    border-bottom: 4px solid #d00d56;
+    
   }
 `;
 
-export const StatusError = ({ title, description }) => {
+export const StatusError = ({ title, description,color }) => {
+  console.log(color);
   const divRef = useRef(null);
   useOnMouseMove(divRef);
 
@@ -58,7 +58,7 @@ export const StatusError = ({ title, description }) => {
         <h2>{title}</h2>
 
         <p>{description}</p>
-        <Button fontSize={"1.5rem"} to="/">
+        <Button fontSize={"2rem"} to="/" color={color}>
           Get Back Home
         </Button>
       </div>

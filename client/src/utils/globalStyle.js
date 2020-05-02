@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import IndieFlower from '../assets/fonts/IndieFlower-Regular.ttf';
 import SourceSansPro from '../assets/fonts/SourceSansPro-Regular.ttf';
-
+import OpenSans from '../assets/fonts/OpenSans-Regular.ttf';
 export const GlobalStyle = createGlobalStyle`
 
 @font-face {
@@ -15,6 +15,10 @@ export const GlobalStyle = createGlobalStyle`
 @font-face {
   font-family: 'Source Sans Pro';
   src: url(${SourceSansPro}) format('truetype');
+}
+@font-face {
+  font-family:'Open Sans';
+  src: url(${OpenSans}) format('truetype');
 }
 *{
   margin:0;
