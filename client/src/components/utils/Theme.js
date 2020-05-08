@@ -13,6 +13,7 @@ const theme = {
     formButtonColor:"#7041EE",
     formSocialPrimaryColor:"#4B85EB",
     formSocialSecondaryColor:"#4E6699",
+    formInputBorderColor:"dodgerBlue"
     
     
   },

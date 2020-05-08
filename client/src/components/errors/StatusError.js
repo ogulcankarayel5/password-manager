@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import img from "../../assets/images/p404.png";
 import { useOnMouseMove } from "../../hooks";
-import { Link } from "react-router-dom";
+
 import { Button } from "../";
+
 const StatusErrorDiv = styled.div`
   position: absolute;
   width: 100%;

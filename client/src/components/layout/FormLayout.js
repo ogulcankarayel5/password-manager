@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ResponsiveImage,Container } from "../";
+import { ResponsiveImage } from "../";
 const FormLayoutContainer = styled.div`
   height: 100vh;
   display: grid;

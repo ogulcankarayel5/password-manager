@@ -1,20 +1,16 @@
-import styled, { css } from "styled-components";
-import { defaultFlex } from "../utils";
+import styled from "styled-components";
+import { defaultFlex, Text } from "../utils";
 
-const FormSide=styled.div`
-
-    grid-column:1/2;
-    height:100%;
-   
-    
-`
+const FormSide = styled.div`
+  grid-column: 1/2;
+  height: 100%;
+`;
 
 const FormWrapper = styled.div`
   ${defaultFlex};
   flex-direction: column;
   height: 100%;
 
- 
   a {
     border-radius: 2px;
     font-size: 2rem;
@@ -27,16 +23,10 @@ const FormWrapper = styled.div`
   -moz-box-shadow: -3px 3px 25px -13px rgba(0, 0, 0, 0.75);
   box-shadow: -3px 3px 25px -13px rgba(0, 0, 0, 0.75); */
     width: 60%;
-    
+
     display: flex;
     flex-direction: column;
-
-    input {
-      border-radius: 4px;
-    }
   }
-
-
 
   .form-group-start {
     justify-content: space-between;
@@ -56,32 +46,9 @@ const FormWrapper = styled.div`
 
   & .form-group {
     display: flex;
-    align-items:center;
-    position: relative;
-    input[type="email"],
-    input[type="password"],
-    input[type="text"] {
-      font-weight: 600;
-      letter-spacing: 0.1rem;
-      font-family: "Open Sans";
-      font-size: 1.5rem;
-      height: 6rem;
 
-      border: 2px solid #aaa;
-      padding: 2rem;
-      padding-left: 5rem;
-      margin-top: 3.5rem;
-      width: 100%;
-      transition: 0.3s;
-      ::placeholder {
-        font-weight: 400;
-        opacity: 0.9;
-      }
-    }
-    input:focus {
-      border-color: dodgerBlue;
-      box-shadow: 0 0 8px 0 dodgerBlue;
-    }
+    align-items: center;
+    position: relative;
 
     svg {
       position: absolute;
@@ -90,6 +57,12 @@ const FormWrapper = styled.div`
       color: #aaa;
       transition: 0.3s;
     }
+    .input-error {
+      border: 3px solid red;
+    }
+  }
+  & .form-group-error {
+    flex-direction: column;
   }
 `;
 
@@ -115,8 +88,10 @@ const SocialButton = styled.button`
   }
 `;
 
-const Submit = styled(SocialButton).attrs((props) => ({
-  type: "submit",
-}))``;
+const ErrorText = styled(Text)`
+  font-size: 1.4rem;
+  text-align: start;
+  color: red;
+`;
 
-export { Submit, SocialButton, FormWrapper,FormSide };
+export { SocialButton, FormWrapper, FormSide, ErrorText };
