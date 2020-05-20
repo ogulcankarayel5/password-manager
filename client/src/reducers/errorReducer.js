@@ -14,7 +14,7 @@ export function errorReducer(state=initialState,action){
            
             return {
                 ...state,
-                errors:[...state.errors,action.payload.data.errors],
+                errors:[...state.errors,action.payload.data],
                 status:action.payload.status,
 
 

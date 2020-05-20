@@ -1,21 +1,24 @@
 import React from "react";
-import { SocialButton } from ".";
+import { SocialButton } from "./";
 export const SocialButtonComponent = React.memo(
-  ({ background, color, borderColor, svg, spanText,onClick,type }) => {
+  ({ background, color, borderColor, svg, spanText, onClick, type }) => {
     console.log("socialbuttonrender");
     return (
-      <SocialButton type={type}
+      <SocialButton
+        type={type}
         onClick={onClick}
         backgroundColor={background}
         color={color}
         borderColor={borderColor}
       >
         {svg}
-        <span>{spanText}</span>
+        {spanText}
       </SocialButton>
     );
-  },((prevProps,nextProps) => {
-    
-    return true;
-  })
+  },
+  (prevProps, nextProps) => {
+    if (prevProps.spanText === nextProps.spanText) {
+      return true;
+    }
+  }
 );

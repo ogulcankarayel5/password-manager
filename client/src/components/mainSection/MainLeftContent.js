@@ -1,42 +1,10 @@
 import React from "react";
-import styled,{css} from "styled-components";
+
 import { stringConstants } from "../../constants";
-import { Title, Text,Button} from "../utils";
+import {LeftContainer,MainTitle,MainParagraph,MainButton} from './styles'
 
 
-const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items:flex-start;
-  padding:2rem;
-  flex: 1;
-  
- 
-`;
 
-const defaultWidth = css`
-width:60%;
-`
-
-const MainTitle = styled(Title)`
-   
-  color: ${(props) => props.theme.colors.mainTitle};
-  font-size: 6rem;
-  ${defaultWidth};
-`;
-
-const MainParagraph = styled(Text)`
-
-  margin-top:3rem;
-  ${defaultWidth};
-`;
-
-const MainButton = styled(Button)`
-   
-    margin-top:3rem;
-
-`
 
 export const MainLeftContent = () => {
   return (

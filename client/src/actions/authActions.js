@@ -23,6 +23,27 @@ const loginFailure = () => {
     }
 }
 
+const registerRequest = () => {
+    return {
+        type:authConstants.REGISTER_REQUEST
+    }
+};
+
+const registerSuccess = (user) => {
+    return {
+        type:authConstants.REGISTER_SUCCESS,
+        payload:user
+    }
+}
+
+const registerFailure = () => {
+    return {
+        type:authConstants.REGISTER_FAILURE
+    }
+}
+
+
+
 
 
 //thunk
@@ -36,13 +57,32 @@ const login = (user) => async (dispatch) => {
 
     }
     catch(err){
-        console.log(err);
+        console.log(err.response)
         dispatch(loginFailure());
-        dispatch(setErrors(err));
+        dispatch(setErrors(err.response));
 
     }
 
 
 }
 
-export {login}
+const register = user => async (dispatch) => {
+
+    try{
+        dispatch(registerRequest());
+        const response = await userService.register(user);
+       
+        dispatch(registerSuccess(response.data));
+        history.push("/")
+        
+    }catch(err){
+        console.log(err.response)
+        dispatch(registerFailure())
+        dispatch(setErrors(err.response))
+        
+    }
+}
+
+
+
+export {login,register}

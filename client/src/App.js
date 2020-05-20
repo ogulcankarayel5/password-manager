@@ -1,10 +1,9 @@
 import React from "react";
 import { Router } from "react-router-dom";
 import { MainRouter } from "./routes";
-import { Theme } from "./components";
+import { Theme } from "./shared";
 import { GlobalStyle,store,history,setAuthToken} from "./utils";
 import { Provider } from "react-redux";
-
 
 
 

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { defaultFlex, Text } from "../utils";
+import {  Text } from "../../shared";
+import {defaultFlex} from '../../shared/styles'
 
 const FormSide = styled.div`
   grid-column: 1/2;
@@ -94,4 +95,37 @@ const ErrorText = styled(Text)`
   color: red;
 `;
 
-export { SocialButton, FormWrapper, FormSide, ErrorText };
+//FormInput
+
+const Input = styled.input.attrs((props)=>({
+    type:props.type
+}))`
+
+border-radius: 4px;
+      font-weight: 600;
+      letter-spacing: 0.1rem;
+      font-family: "Open Sans";
+      font-size: 1.5rem;
+      height: 6rem;
+      
+      border: 2px solid #aaa;
+      padding: 2rem;
+      padding-left: 5rem;
+      margin-top: 3.5rem;
+      width: 100%;
+      transition: 0.3s;
+      ::placeholder {
+        font-weight: 400;
+        opacity: 0.9;
+      }
+      &:focus{
+        
+        border-color: ${props=>props.theme.colors.formInputBorderColor};
+        box-shadow: 0 0 8px 0  ${props=>props.theme.colors.formInputBorderColor};
+      }
+     
+
+
+`
+
+export { SocialButton, FormWrapper, FormSide, ErrorText,Input };

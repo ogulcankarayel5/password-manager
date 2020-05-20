@@ -2,8 +2,8 @@ import React from 'react'
 import { Switch,Route } from "react-router-dom";
 import {AppRoute,ProtectedRoute} from './';
 import {CommonLayout,FormLayout} from '../components';
-import Login from '../components/form/Login';
-import Register from '../components/form/Register';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 import {HomePage,NotFound,Unauthorized } from '../pages';
 import img from '../assets/images/form.png'
 
