@@ -8,17 +8,20 @@ import { Button } from "../../shared";
 
 export const StatusError = ({ title, description,color }) => {
 
+  if(!title){
+    return null;
+  }
   console.log(color);
   const divRef = useRef(null);
   useOnMouseMove(divRef);
 
   return (
-    <StatusErrorDiv ref={divRef}>
+    <StatusErrorDiv data-test="statusErrorDiv" ref={divRef}>
       <div>
-        <h2>{title}</h2>
+        <h2 data-test="statusErrorH2">{title}</h2>
 
-        <p>{description}</p>
-        <Button fontSize={"2rem"} to="/" color={color}>
+        <p data-test="statusErrorText">{description}</p>
+        <Button fontSize={"2rem"} to="/" color={color} data-test="statusErrorButton">
           Get Back Home
         </Button>
       </div>

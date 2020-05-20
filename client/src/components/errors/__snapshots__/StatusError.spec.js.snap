@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StatusErrorDiv styled component snapshot testing Snapshot for StatusErrorDiv 1`] = `
+exports[`Snapshots for StatusError render correctly StatusError component 1`] = `null`;
+
+exports[`Snapshots for StatusError render correctly StatusErrorDiv styled component 1`] = `
 .c0 {
   position: absolute;
   width: 100%;
