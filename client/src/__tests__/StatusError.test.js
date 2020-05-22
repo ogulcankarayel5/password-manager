@@ -1,8 +1,9 @@
 import React from "react";
 import { shallow} from "enzyme";
-import {findByTestAtrr} from '../src/utils'
-import { StatusError, StatusErrorDiv } from "../src/components/Errors";
-import { theme } from "../src/shared";
+
+import {findByTestAtrr,checkProps} from '../utils';
+import { StatusError, StatusErrorDiv } from "../components";
+import { theme } from "../shared";
 import renderer from "react-test-renderer";
 import "jest-styled-components";
 
@@ -12,6 +13,7 @@ const setUp = (
   const component = shallow(<StatusError {...props} />);
   return component;
 }; 
+
 // describe("Status error component",()=>{
 //     it('matches the snapshot',()=>{
 //         const tree=renderer.create(
@@ -26,6 +28,22 @@ const setUp = (
 
 describe("StatusError component", () => {
  
+describe("Checking PropTypes",() => {
+  
+  it("Should not throw a warning",() => {
+
+    const expectedProps = {
+      title:"Status error",
+      description:"Status error",
+      color:theme.colors.errorButtonBackground
+    }
+
+    const propsErr = checkProps(StatusError,expectedProps)
+    expect(propsErr).toBeUndefined();
+  })
+})
+
+
   describe('Have props',()=>{
     let wrapper;
 

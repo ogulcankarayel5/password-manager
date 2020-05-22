@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-
+import PropTypes from "prop-types";
 
 import { useOnMouseMove } from "../../hooks";
 import {StatusErrorDiv} from './styles'
@@ -28,3 +28,9 @@ export const StatusError = ({ title, description,color }) => {
     </StatusErrorDiv>
   );
 };
+
+StatusError.propTypes = {
+  title:PropTypes.string,
+  description:PropTypes.string,
+  color:PropTypes.string
+}
