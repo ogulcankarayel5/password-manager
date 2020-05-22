@@ -1,10 +1,8 @@
 import React from "react";
 import { shallow} from "enzyme";
-import {findByTestAtrr} from '../../utils'
-import { StatusError, StatusErrorDiv } from "./";
-
-
-import { theme } from "../../shared";
+import {findByTestAtrr} from '../src/utils'
+import { StatusError, StatusErrorDiv } from "../src/components/Errors";
+import { theme } from "../src/shared";
 import renderer from "react-test-renderer";
 import "jest-styled-components";
 
@@ -13,7 +11,7 @@ const setUp = (
 ) => {
   const component = shallow(<StatusError {...props} />);
   return component;
-};
+}; 
 // describe("Status error component",()=>{
 //     it('matches the snapshot',()=>{
 //         const tree=renderer.create(

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ResponsiveImage = styled.img.attrs({
+  
     alt:"img"
   })
  `
