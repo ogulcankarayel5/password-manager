@@ -7,13 +7,14 @@ import { Button } from "../../shared";
 
 
 export const StatusError = ({ title, description,color }) => {
-
+  const divRef = useRef(null);
+  useOnMouseMove(divRef);
   if(!title){
     return null;
   }
   console.log(color);
-  const divRef = useRef(null);
-  useOnMouseMove(divRef);
+ 
+ 
 
   return (
     <StatusErrorDiv data-test="statusErrorDiv" ref={divRef}>

@@ -6,7 +6,7 @@ const customErrorHandler = (err,req,res,next) => {
 
     if(err.code==11000){
         customError = new CustomError(
-            "Duplicate key found : check your input",
+            "Username veya email çoktan alınmış.Tekrar deneyin",
             400
           );
     }
