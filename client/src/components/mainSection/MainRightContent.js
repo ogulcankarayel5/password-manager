@@ -1,12 +1,8 @@
 import React from 'react'
-import styled from 'styled-components';
+
 import bg from '../../assets/images/bg2.png';
-import {ResponsiveImage} from '../'
-const RightContainer=styled.div`
-
-flex:1;
-
-`
+import {ResponsiveImage} from '../../shared'
+import {RightContainer} from './styles'
 
 
 export const MainRightContent = () => {

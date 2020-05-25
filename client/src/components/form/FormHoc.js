@@ -1,7 +1,7 @@
 import React from "react";
 
 import { FormWrapper, FormSide } from "./styles";
-import { Title } from "../utils";
+import { Title } from "../../shared";
 
 
 import { ThemeConsumer } from "styled-components";

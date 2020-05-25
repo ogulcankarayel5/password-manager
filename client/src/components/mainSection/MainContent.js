@@ -1,19 +1,10 @@
 import React from 'react'
-import styled from 'styled-components';
 
-import{ MainLeftContent,MainRightContent} from './';
-
-
-const MainContainer = styled.div`
-
-grid-column:2/3;
-grid-row:2/3;
-display:flex;
-align-items:center;
-justify-content:center;
+import { MainLeftContent,MainRightContent,} from './'
+import{MainContainer} from './styles';
 
 
-`
+
 export const MainContent = () => {
     return (
         <MainContainer>

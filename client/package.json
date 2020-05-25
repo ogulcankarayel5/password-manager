@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@loadable/component": "^5.12.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
     "react-icons": "^3.9.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "react-spinners": "^0.8.3",
+    "react-toastify": "^6.0.4",
+    "reaptcha": "^1.7.2",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -20,9 +26,10 @@
     "universal-cookie": "^4.0.3"
   },
   "scripts": {
+    "test:coverage": "jest --silent --coverage",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
@@ -40,5 +47,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "check-prop-types": "^1.1.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "fetch-mock": "^9.10.0",
+    "jest-enzyme": "^7.1.2",
+    "jest-fetch-mock": "^3.0.3",
+    "jest-styled-components": "^7.0.2",
+    "moxios": "^0.4.0",
+    "redux-mock-store": "^1.5.4"
   }
 }

@@ -34,7 +34,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "passport": "^0.4.1",
-    "passport-google-oauth": "^2.0.0"
+    "passport-google-oauth": "^2.0.0",
+    "react-helmet-async": "^1.0.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

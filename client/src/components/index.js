@@ -1,7 +1,8 @@
-export * from './common';
-export * from './header';
-export * from './layout';
-export * from './mainSection';
-export * from './utils';
-export * from './errors';
-export * from './form';
+
+export * from './Header';
+export * from './Layout';
+export * from './MainSection';
+export * from './Footer';
+
+export * from './Errors';
+export * from './Form';

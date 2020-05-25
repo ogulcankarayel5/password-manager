@@ -1,28 +1,41 @@
 import React from "react";
-
-import { ReactComponent as GoogleSvg } from "../../assets/icons/google.svg";
-import { ReactComponent as LinkedinSvg } from "../../assets/icons/linkedin.svg";
+import {Helmet} from 'react-helmet'
+//TODO:react helmet devam
+import { ReactComponent as GoogleSvg } from "../assets/icons/google.svg";
+import { ReactComponent as LinkedinSvg } from "../assets/icons/linkedin.svg";
 import {
   
   ErrorText,
   FormInput,
   FormHoc,
   SocialButtonComponent,
-} from "./";
-import { Text } from "../utils";
+} from "../components/Form";
+
+import { Text } from "../shared";
 import { Link } from "react-router-dom";
 
 import { FaUser, FaLock } from "react-icons/fa";
 
-import { useForm } from "../../hooks";
+import { useForm } from "../hooks";
 
-import { validate } from "../../utils/";
+import { validate } from "../utils";
+
+import Reaptcha from 'reaptcha';
+
+
 
 const Login = (props) => {
   const initialState = {
     username: "",
     password: "",
+   
+    
   };
+
+
+
+
+
   const {theme}=props;
 
   console.log("login");
@@ -31,28 +44,44 @@ const Login = (props) => {
     console.log("hyyysbumt");
   };
 
+  const head = () => {
+    return (
+      <Helmet  bodyAttributes={{class:"loginPage"}}>
+        <title>Login Page</title>
+        <meta name="description" content="This is login page"/>
+      </Helmet>
+    )
+  }
+
   const {
     values,
     errors,
     handleChange,
     handleBlur,
     handleSubmit,
+    handleReCAPTCHA
     
   } = useForm(initialState, validate, submit, "login");
 
+
+ 
+
   //userform kaldırıldı
   return (
+   <>
+   {head()}
    
-        <form onSubmit={handleSubmit}>
+   <form onSubmit={handleSubmit}>
           <div className="form-group form-group-error">
             <FormInput
               className={`${errors.username && "input-error"}`}
               name="username"
-              type="text"
+              type="text" 
               placeholder="Username"
               value={values.username}
               onChange={handleChange}
               onBlur={handleBlur}
+              ariaLabel="Username"
               icon={<FaUser size={"3rem"} color={theme.colors.formInputBorderColor} />}
             />
           </div>
@@ -61,6 +90,7 @@ const Login = (props) => {
             <FormInput
               name="password"
               type="password"
+              ariaLabel="Password"
               placeholder="Password"
               value={values.password}
               onChange={handleChange}
@@ -77,7 +107,12 @@ const Login = (props) => {
 
             <Link to="/register">Forgot Password ?</Link>
           </div>
+
+            <Reaptcha sitekey={process.env.REACT_APP_TEST_SITE_KEY} onVerify={handleReCAPTCHA} /> 
+          
+           
           <SocialButtonComponent type="submit" spanText="Login"/>
+         
           <Text marginTop={"3.5rem"}>Or</Text>
        
           <SocialButtonComponent
@@ -99,6 +134,10 @@ const Login = (props) => {
             Don't have account yet ?<Link to="/register"> Click here</Link>
           </Text>
         </form>
+   
+   </>
+
+        
     
   );
 };
