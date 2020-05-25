@@ -12,7 +12,7 @@ export const StatusError = ({ title, description,color }) => {
   if(!title){
     return null;
   }
-  console.log(color);
+ 
  
  
 

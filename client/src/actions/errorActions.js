@@ -1,16 +1,19 @@
 import {errorConstants} from '../constants';
 
-export const setErrors = (err) => {
+const setErrors = (err,status) => {
 
     return {
         type:errorConstants.SET_ERROR,
-        payload:err
+        payload:err,
+        status
     }
 }
 
-export const clearErrors = () => {
+const clearErrors = () => {
     return {
         type:errorConstants.CLEAR_ERROR
     }
 }
 
+
+export const errorActions = {setErrors,clearErrors}

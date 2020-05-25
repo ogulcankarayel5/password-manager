@@ -12,6 +12,7 @@ const login = async (user) => {
 
 const register = async (user) => {
   const response = await axios.post(`${API_AUTH}/register`, user);
+  
   return response;
 };
 export const userService = {

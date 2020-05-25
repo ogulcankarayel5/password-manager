@@ -5,3 +5,4 @@ export * from './history';
 export * from './setAuthToken';
 export * from './validate'
 export * from './tests'
+export * from './mockStore'

@@ -5,7 +5,7 @@ describe("Auth Reducer",() => {
 
     it("Should return initial state",() => {
         const initialState = {
-            loading: false,
+            loading: false, 
             isAuthenticated: false,
             user: null,
           };
@@ -20,7 +20,7 @@ describe("Auth Reducer",() => {
             type:authConstants.LOGIN_SUCCESS,
             payload:user
         })
-        console.log(newState)
+       
         expect(newState.user).toEqual(user,{isAuthenticated:true});
     })
 

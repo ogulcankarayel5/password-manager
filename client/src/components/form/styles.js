@@ -89,6 +89,18 @@ const SocialButton = styled.button`
   }
 `;
 
+
+SocialButton.defaultProps={
+  theme:{
+    colors:{
+      background:"#FFFFFF",
+      formButtonColor:"#7041EE"
+    }
+  }
+
+}
+SocialButton.displayName="SocialButton"
+
 const ErrorText = styled(Text)`
   font-size: 1.4rem;
   text-align: start;
