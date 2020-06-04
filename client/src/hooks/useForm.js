@@ -21,7 +21,7 @@ export const useForm = (initialState, validate, callback, formType) => {
   }, [errors]);
 
   useEffect(()=>{
-    console.log(initialState)
+   
     console.log(values)
     
     if(values!==initialState){

@@ -6,7 +6,7 @@ export const FormInput = React.memo(({name,type,placeholder,value,onChange,onBlu
  
   return (
       <>
-      <Input className={className} name={name} type={type} placeholder={placeholder} value={value} onChange={onChange} onBlur={onBlur} aria-label={ariaLabel}/>
+      <Input  className={className} name={name} type={type} placeholder={placeholder} value={value} onChange={onChange} onBlur={onBlur} aria-label={ariaLabel}/>
       {icon}
       
       </>

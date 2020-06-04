@@ -1,8 +1,9 @@
 
-export * from './Header';
-export * from './Layout';
-export * from './MainSection';
-export * from './Footer';
+export * from './header';
+export * from './layout';
+export * from './mainSection';
+export * from './footer';
 
-export * from './Errors';
-export * from './Form';
+export * from './errors';
+export * from './form';
+export * from './seo'

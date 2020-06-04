@@ -1,5 +1,5 @@
 import { authConstants } from "../constants";
-
+import {REQUEST,SUCCESS,ERROR} from '../utils/actionType';
 const initialState = {
   loading: false,
   isAuthenticated: false,
@@ -7,21 +7,23 @@ const initialState = {
 };
 export function authReducer(state = initialState, action) {
   switch (action.type) {
-    case (authConstants.LOGIN_REQUEST, authConstants.REGISTER_REQUEST):
+    case REQUEST(authConstants.LOGIN),REQUEST(authConstants.REGISTER):
+    
       return {
         ...state,
         loading: true,
         isAuthenticated: false,
         user: null,
       };
-    case authConstants.LOGIN_SUCCESS:
+    case SUCCESS(authConstants.LOGIN):
       return {
         ...state,
         loading: false,
         isAuthenticated: true,
         user: action.payload,
       };
-    case (authConstants.LOGIN_FAILURE, authConstants.REGISTER_FAILURE):
+    case ERROR(authConstants.LOGIN),ERROR(authConstants.REGISTER):
+    
       return {
         ...state,
         loading: false,

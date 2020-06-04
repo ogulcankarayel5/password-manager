@@ -1,6 +1,7 @@
 import React from "react";
-import {Helmet} from 'react-helmet'
-//TODO:react helmet devam
+
+import {motion} from 'framer-motion'
+
 import { ReactComponent as GoogleSvg } from "../assets/icons/google.svg";
 import { ReactComponent as LinkedinSvg } from "../assets/icons/linkedin.svg";
 import {
@@ -9,7 +10,8 @@ import {
   FormInput,
   FormHoc,
   SocialButtonComponent,
-} from "../components/Form";
+  SEO
+} from "../components";
 
 import { Text } from "../shared";
 import { Link } from "react-router-dom";
@@ -21,6 +23,7 @@ import { useForm } from "../hooks";
 import { validate } from "../utils";
 
 import Reaptcha from 'reaptcha';
+import { withTheme } from "styled-components";
 
 
 
@@ -31,11 +34,6 @@ const Login = (props) => {
    
     
   };
-
-
-
-
-
   const {theme}=props;
 
   console.log("login");
@@ -44,14 +42,7 @@ const Login = (props) => {
     console.log("hyyysbumt");
   };
 
-  const head = () => {
-    return (
-      <Helmet  bodyAttributes={{class:"loginPage"}}>
-        <title>Login Page</title>
-        <meta name="description" content="This is login page"/>
-      </Helmet>
-    )
-  }
+
 
   const {
     values,
@@ -65,12 +56,12 @@ const Login = (props) => {
 
 
  
-
+ 
   //userform kaldırıldı
   return (
    <>
-   {head()}
    
+   <SEO title="Login" description="Login Page"/>
    <form onSubmit={handleSubmit}>
           <div className="form-group form-group-error">
             <FormInput
@@ -142,4 +133,4 @@ const Login = (props) => {
   );
 };
 
-export default FormHoc(Login);
+export default withTheme(Login);

@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 import img from '../../assets/images/bg1.png';
+import {motion} from 'framer-motion'
 
 const CommonLayoutContainer = styled.div`
   height: 100vh;

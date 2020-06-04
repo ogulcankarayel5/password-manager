@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/ogulcankarayel5/password-manager-web#readme",
   "dependencies": {
+    "async-redis": "^1.1.7",
     "bcrypt": "^4.0.1",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
@@ -35,6 +36,7 @@
     "mongoose": "^5.9.7",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
+    "rand-token": "^1.0.1",
     "react-helmet-async": "^1.0.6"
   },
   "devDependencies": {

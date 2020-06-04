@@ -2,17 +2,17 @@
 
 const User = require('../../../models/User');
 
-const registerDb = async (userInfo) => {
+const register = async (userInfo) => {
 
     
     const user= await User.create(userInfo);
     return user;
    
 }
-const loginDb = async (userInfo) => {
+const login = async (userInfo) => {
     const {email}=userInfo;
     return await User.findOne({email}).select("+password");
 }
 
-module.exports={registerDb,loginDb};
+module.exports=authDb = {register,login};
 //export {registerDb,loginDb};

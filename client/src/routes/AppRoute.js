@@ -9,9 +9,11 @@ export const AppRoute = ({ component: Component, layout: Layout,img,...rest }) =
       render={(props) => (
         
         
-        <Layout img={img}>
+     
+          <Layout img={img}>
           <Component {...rest} {...props} />
         </Layout>
+      
       )}
     />
   );

@@ -1,24 +1,26 @@
-const sendJwt = (user, res) => {
-  const token = user.generateJwtFromUser();
+const randToken = require('rand-token')
+const redisAuthHelper = require("../redis/auth")
 
-  const { JWT_COOKIE, NODE_ENV } = process.env;
 
-  return res
-    .status(200)
-    .cookie("access_token", token, {
-      httpOnly: true,
-      expires: new Date(Date.now() + parseInt(JWT_COOKIE) * 1000 * 60),
-      secure: NODE_ENV === "development" ? false : true,
-    })
-    .json({
-      success: true,
-      access_token: token,
-      data: {
-        name: user.name,
-        email: user.email,
-      },
-    });
-};
+const prepareJwtToken = user => {
+
+  const { JWT_SECRET_KEY, JWT_EXPIRE } = process.env;
+  const token = user.generateJwtFromUser(JWT_SECRET_KEY,JWT_EXPIRE);
+  return token;
+
+
+}
+const prepareRefreshToken = (user) => {
+ 
+  const {JWT_REFRESH_SECRET_KEY,JWT_REFRESH_EXPIRE} = process.env;
+  const refreshToken = user.generateJwtFromUser(JWT_REFRESH_SECRET_KEY,JWT_REFRESH_EXPIRE)
+  const refreshTokenUid = randToken.uid(256);
+  
+  redisAuthHelper.storeRefreshToken(refreshToken,refreshTokenUid);
+  return refreshTokenUid;
+}
+
+
 
 const isTokenIncluded = (authorization) => {
   return authorization && authorization.startsWith('Bearer:');
@@ -34,5 +36,5 @@ const getAccessTokenFromHeader = authorization => {
   return access_token;
 }
 
-module.exports={ sendJwt,isTokenIncluded,getAccessTokenFromHeader };
+module.exports={isTokenIncluded,getAccessTokenFromHeader,prepareRefreshToken,prepareJwtToken };
 //export { sendJwt,isTokenIncluded,getAccessTokenFromHeader };

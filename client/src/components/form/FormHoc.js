@@ -1,32 +1,30 @@
-import React from "react";
+// import React from "react";
 
-import { FormWrapper, FormSide } from "./styles";
-import { Title } from "../../shared";
-
-
-import { ThemeConsumer } from "styled-components";
+// import { FormWrapper, FormSide } from "./styles";
+// import { Title } from "../../shared";
 
 
 
+//deprecated
 
 
-export const FormHoc = WrappedComponent => {
-  return props => {
+// export const FormHoc = WrappedComponent => {
+  
+//   return props => {
        
-    return (
-      <FormSide>
-      <FormWrapper>
+//     return (
+//       <FormSide>
+//       <FormWrapper>
        
-          <Title>Welcome</Title>
-          <ThemeConsumer>
-            {(theme) => (
-              <WrappedComponent theme={theme} {...props} />
-            )}
-          </ThemeConsumer>
+//           <Title>Welcome</Title>
+          
+//           <WrappedComponent {...props} />
+           
+         
          
        
-      </FormWrapper>
-    </FormSide>
-    )
-  }
-}
+//       </FormWrapper>
+//     </FormSide>
+//     )
+//   }
+// }

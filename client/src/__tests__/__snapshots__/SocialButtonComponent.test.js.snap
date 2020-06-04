@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<button
+  className="sc-fzoXzr kotTAm"
+  color="red"
+  data-test="buttonComponent"
+  type="button"
+>
+  button
+</button>
+`;

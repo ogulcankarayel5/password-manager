@@ -1,7 +1,7 @@
 // import { registerDb,loginDb } from "../../db/mongodb/auth/auth-post.db";
 // import CustomError from "../../helpers/error/CustomError";
 // import { comparePassword } from "../../helpers/input/inputHelpers";
-const {registerDb,loginDb} = require("../../db/mongodb/auth/auth-post.db");
+const authDb = require("../../db/mongodb/auth/auth-post.db");
 const CustomError = require("../../helpers/error/CustomError");
 const {comparePassword} = require("../../helpers/input/inputHelpers");
 /*
@@ -9,13 +9,13 @@ const {comparePassword} = require("../../helpers/input/inputHelpers");
  * or call an external endpoint , add them to this service
  */
 
-const registerService = async (userInfo) => {
-  return await registerDb(userInfo);
+const register = async (userInfo) => {
+  return await authDb.register(userInfo);
 };
 
-const loginService = async (userInfo) => {
+const login = async (userInfo) => {
   
-  const user = await loginDb(userInfo);
+  const user = await authDb.login(userInfo);
   console.log(user);
   if(user===null){
     return null;
@@ -28,5 +28,5 @@ const loginService = async (userInfo) => {
   
 };
 
-module.exports={registerService,loginService};
+module.exports= authService = {register,login};
 // export { registerService, loginService };

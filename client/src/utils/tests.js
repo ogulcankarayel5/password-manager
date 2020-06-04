@@ -1,10 +1,13 @@
 
 
-
+import React from 'react'
 import checkPropTypes from 'check-prop-types';
 import {applyMiddleware,createStore} from 'redux';
+import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components";
 import rootReducer from '../reducers'
 import {middleware} from '../utils'
+import { HelmetProvider } from 'react-helmet-async';
 
 export const checkProps = (component,expectedProps) => {
 
@@ -12,8 +15,37 @@ export const checkProps = (component,expectedProps) => {
     return propsErr;
 }
 
+export const renderWithRedux = (component,store) => {
+
+    return (
+        <Provider store={store}>
+            {component}
+        </Provider>
+    )
+}
+
+export const renderWithTheme = (component,theme) => {
+
+    return (
+        <ThemeProvider theme={theme}>
+            {component}
+        </ThemeProvider>
+    )
+}
+
+export const renderWithHelmet = (component) => {
+    return (
+        <HelmetProvider>
+            {component}
+        </HelmetProvider>
+    )
+}
+
+
+
 
 export const findByTestAtrr = (component, attr) => {
+    
     const wrapper = component.find(`[data-test='${attr}']`);
     return wrapper;
 };

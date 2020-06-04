@@ -5,7 +5,7 @@ const {sendJwt} = require( "../../helpers/authorization/tokenHelpers");
 
 
 
-const googleAuthController = asyncHandler(async (req,res,next) => {
+const googleAuth = asyncHandler(async (req,res,next) => {
 
     const {user}=req;
     
@@ -15,4 +15,4 @@ const googleAuthController = asyncHandler(async (req,res,next) => {
 })
 
 
-module.exports={googleAuthController};
+module.exports= passportController ={googleAuth};

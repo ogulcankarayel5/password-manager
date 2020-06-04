@@ -139,5 +139,11 @@ border-radius: 4px;
 
 
 `
+Input.displayName= "Input";
+Input.defaultProps={
+  theme:{
+    colors:{formInputBorderColor:"#FFFFFF"}
+  }
+}
 
 export { SocialButton, FormWrapper, FormSide, ErrorText,Input };

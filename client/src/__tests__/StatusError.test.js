@@ -48,7 +48,7 @@ describe("Checking PropTypes",() => {
     let wrapper;
 
     beforeEach(() => {
-      const props = { title: 404, description: "Not found", color: theme.colors.statusErrorBackground }
+      const props = { title: "404", description: "Not found", color: theme.colors.statusErrorBackground }
       wrapper=setUp(props);
     });
   

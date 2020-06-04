@@ -1,16 +1,18 @@
 import React from "react";
-import {Helmet} from 'react-helmet'
+
 import {useDispatch,useSelector,shallowEqual} from 'react-redux';
-import {register, clearErrors} from '../actions'
+
+import {authActions, errorActions} from '../actions'
 import { useForm } from "../hooks";
 import { validate } from "../utils";
 import { Text } from "../shared";
 import { Link } from "react-router-dom";
-import { ErrorText, FormInput, FormHoc, SocialButtonComponent } from "../components/Form";
+import { ErrorText, FormInput, FormHoc, SocialButtonComponent,SEO } from "../components";
 import { FaRegEnvelope, FaLock, FaUser } from "react-icons/fa";
 import Reaptcha from 'reaptcha';
 import {ShowToast} from '../utils/showToast'
 import ClipLoader from "react-spinners/ClipLoader";
+import { withTheme } from "styled-components";
 
 
 
@@ -36,19 +38,11 @@ const Register = (props) => {
     const user={
      name:username,password,email
     }
-    dispatch(clearErrors())
-    dispatch(register(user))  
+    dispatch(errorActions.clearErrors())
+    dispatch(authActions.register(user))  
 
   };
-  const head = () => {
-    return (
-      <Helmet  bodyAttributes={{class:"loginPage"}}>
-        <title>Register Page</title>
-        <meta name="description" content="This is registerpage"/>
-      </Helmet>
-    )
-  }
-
+  
  
 
 
@@ -65,18 +59,18 @@ console.log("register")
   return (
    
    <>
-   {head()}
-    <form onSubmit={handleSubmit}>
+   <SEO title="Register" description="Register Page"/>
+    <form onSubmit={handleSubmit} data-test="form">
       {serverErrors && serverErrors.map((error,index) => <ShowToast key={index} message={error.message} type="error"/>)}
       <div className="form-group form-group-error">
         
         <FormInput
+         data-testid="form-input"
+          data-test="form-input"
           className={`${errors.username && "input-error"}`}
           name="username"
           type="text"
-          ariaLabel="Username"
-          
-          placeholder="Username"
+          ariaLabel="Username" placeholder="Username"
           value={values.username}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -88,6 +82,7 @@ console.log("register")
       {errors.username && <ErrorText>{errors.username}</ErrorText>}
       <div className="form-group form-group-error">
         <FormInput
+         data-test="form-input"
           className={`${errors.password && "input-error"}`}
           name="password"
           type="password"
@@ -104,6 +99,7 @@ console.log("register")
       {errors.password && <ErrorText>{errors.password}</ErrorText>}
       <div className="form-group form-group-error">
         <FormInput
+           data-test="form-input"
           className={`${errors.email && "input-error"}`}
           name="email"
           type="email"
@@ -139,4 +135,4 @@ console.log("register")
   );
 };
 
-export default FormHoc(Register);
+export default withTheme(Register);

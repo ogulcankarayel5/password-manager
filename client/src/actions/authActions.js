@@ -1,4 +1,5 @@
 import { authConstants } from "../constants";
+import {REQUEST,SUCCESS,ERROR} from '../utils'
 import { userService } from "../services";
 import { history } from "../utils";
 import { errorActions } from "./";
@@ -6,39 +7,39 @@ import { errorActions } from "./";
 //plain actions
 const loginRequest = () => {
   return {
-    type: authConstants.LOGIN_REQUEST,
+    type: REQUEST(authConstants.LOGIN),
   };
 };
 
 const loginSuccess = (user) => {
   return {
-    type: authConstants.LOGIN_SUCCESS,
+    type: SUCCESS(authConstants.LOGIN),
     payload: user,
   };
 };
 
 const loginFailure = () => {
   return {
-    type: authConstants.LOGIN_FAILURE,
+    type:ERROR( authConstants.LOGIN),
   };
 };
 
 const registerRequest = () => {
   return {
-    type: authConstants.REGISTER_REQUEST,
+    type:REQUEST(authConstants.REGISTER),
   };
 };
 
 const registerSuccess = (user) => {
   return {
-    type: authConstants.REGISTER_SUCCESS,
+    type: SUCCESS(authConstants.REGISTER_),
     payload: user,
   };
 };
 
 const registerFailure = () => {
   return {
-    type: authConstants.REGISTER_FAILURE,
+    type: ERROR(authConstants.REGISTER),
   };
 };
 

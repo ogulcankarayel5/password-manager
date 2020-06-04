@@ -1,22 +1,14 @@
 import React from 'react'
-import {Helmet} from 'react-helmet'
-import {StatusError} from '../components'
+
+import {StatusError,SEO} from '../components'
 import { ThemeConsumer } from 'styled-components'
 export const NotFound = () => {
 
-    const head = () => {
-        return (
-          <Helmet  bodyAttributes={{class:"loginPage"}}>
-            <title>Not Found</title>
-            <meta name="description" content="This is Not found page"/>
-          </Helmet>
-        )
-      }
-    
+   
     
     return (
         <>
-        {head()}
+        <SEO title="404 Not Found" description={"404 error. Sayfa yok"}/>
         <ThemeConsumer>
             {theme => 
             

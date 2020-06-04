@@ -50,16 +50,16 @@ UserSchema.pre("save", function (next) {
   }
 });
 
-UserSchema.methods.generateJwtFromUser = function () {
-  const { JWT_SECRET_KEY, JWT_EXPIRE } = process.env;
+UserSchema.methods.generateJwtFromUser = function (secretKey,expireTime) {
+  
 
   const payload = {
     id: this._id,
     name: this.name,
   };
 
-  const token = jwt.sign(payload, JWT_SECRET_KEY, {
-    expiresIn: JWT_EXPIRE,
+  const token = jwt.sign(payload, secretKey, {
+    expiresIn: expireTime,
   });
 
   return token;
