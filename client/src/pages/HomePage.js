@@ -1,14 +1,17 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 
 
 import {MainContent,SEO} from '../components';
 import {useDispatch} from 'react-redux'
-import {login} from '../actions'
+import {authActions} from '../actions'
 
 export const HomePage = () => {
-   
-    // const dispatch= useDispatch()
-    // dispatch(login())
+   console.log("home")
+   //  const dispatch= useDispatch()
+   //  useEffect(()=>{
+   //      dispatch(authActions.register({name:"sel1war11",email:"k21w@gmail.com",password:"1331313131"}));
+   //  },[])
+
 
   
     return (

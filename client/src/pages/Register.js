@@ -55,7 +55,7 @@ const Register = (props) => {
   );
 
 console.log("register")
-
+console.log(serverErrors)
   return (
    
    <>

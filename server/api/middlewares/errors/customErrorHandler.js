@@ -2,9 +2,11 @@
 const CustomError = require("../../helpers/error/CustomError");
 
 const customErrorHandler = (err,req,res,next) => {
-    console.log(err)
+    console.log(err.status)
     let customError=err;
 
+    
+    
     if(err.code==11000){
         customError = new CustomError(
             "Username veya email çoktan alınmış.Tekrar deneyin",

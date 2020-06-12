@@ -3,8 +3,9 @@ import { Router } from "react-router-dom";
 import { MainRouter } from "./routes";
 import { Theme } from "./shared";
 import { HelmetProvider } from "react-helmet-async";
-import { GlobalStyle, store, history, setAuthToken } from "./utils";
+import { GlobalStyle, store, history } from "./utils";
 import { Provider } from "react-redux";
+
 
 function App() {
   return (

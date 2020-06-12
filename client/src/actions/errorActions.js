@@ -2,6 +2,7 @@ import {errorConstants} from '../constants';
 
 const setErrors = (err,status) => {
 
+    console.log(err);
     return {
         type:errorConstants.SET_ERROR,
         payload:err,

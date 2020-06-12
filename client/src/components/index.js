@@ -7,3 +7,4 @@ export * from './footer';
 export * from './errors';
 export * from './form';
 export * from './seo'
+export * from './startup'

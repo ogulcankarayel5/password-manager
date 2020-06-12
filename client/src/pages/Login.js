@@ -12,7 +12,7 @@ import {
   SocialButtonComponent,
   SEO
 } from "../components";
-
+import { useSelector } from "react-redux";
 import { Text } from "../shared";
 import { Link } from "react-router-dom";
 
@@ -36,7 +36,7 @@ const Login = (props) => {
   };
   const {theme}=props;
 
-  console.log("login");
+ 
 
   const submit = () => {
     console.log("hyyysbumt");
@@ -54,7 +54,15 @@ const Login = (props) => {
     
   } = useForm(initialState, validate, submit, "login");
 
-
+  const {isAuthenticated,refreshToken,user} = useSelector(state => ({
+    isAuthenticated:state.authReducer.isAuthenticated,
+    refreshToken:state.authReducer.refresh_token,
+    user:state.authReducer.user
+  }) 
+  );
+  console.log(isAuthenticated);
+  console.log(user)
+  console.log(refreshToken)
  
  
   //userform kaldırıldı

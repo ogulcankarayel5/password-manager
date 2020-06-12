@@ -62,6 +62,8 @@ UserSchema.methods.generateJwtFromUser = function (secretKey,expireTime) {
     expiresIn: expireTime,
   });
 
+  console.log(jwt.decode(token).exp);
+
   return token;
 };
 

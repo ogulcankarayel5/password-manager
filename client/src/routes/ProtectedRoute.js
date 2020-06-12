@@ -7,19 +7,24 @@ export const ProtectedRoute = ({
   layout: Layout,
   ...rest
 }) => {
-  const isAuthenticated = useSelector(
-    (state) => state.authReducer.isAuthenticated
+  const {isAuthenticated,refreshToken} = useSelector(state => ({
+    isAuthenticated:state.authReducer.isAuthenticated,
+    refreshToken:state.authReducer.refresh_token
+  }) 
   );
   return (
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated === true ? (
+        (isAuthenticated === true || (!isAuthenticated && refreshToken)) ? (
           <Layout>
             <Component {...props} />
           </Layout>
         ) : (
-          <Redirect to="/unauthorized" />
+          <Redirect to={{
+            pathname:"/login",
+            state:{from:props.location}
+          }} />
         )
       }
     />

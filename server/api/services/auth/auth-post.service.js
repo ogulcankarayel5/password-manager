@@ -2,7 +2,7 @@
 // import CustomError from "../../helpers/error/CustomError";
 // import { comparePassword } from "../../helpers/input/inputHelpers";
 const authDb = require("../../db/mongodb/auth/auth-post.db");
-const CustomError = require("../../helpers/error/CustomError");
+
 const {comparePassword} = require("../../helpers/input/inputHelpers");
 /*
  * if you need to make calls to additional tables, data stores (Redis, for example),

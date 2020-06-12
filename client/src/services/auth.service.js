@@ -1,23 +1,36 @@
 import { setAuthToken ,generateApiEndpoint} from "../utils";
-import { apiConstants } from "../constants";
-import axios from "axios";
 
-const API_AUTH = apiConstants.API_AUTH;
+import client from "./client";
 
+
+
+
+const refreshToken = async(refreshToken) => {
+
+  const endpoint = generateApiEndpoint("auth/token");
+ console.log(endpoint)
+  console.log("in service: "+ refreshToken)
+  const response = await client.post(endpoint,{refreshToken})
+  
+  return response.data;
+
+}
 const login = async (user) => {
-  const endpoint = generateApiEndpoint("login")
-  const response = await axios.post(endpoint, user);
+  const endpoint = generateApiEndpoint("auth/login")
+  const response = await client.post(endpoint, user);
   console.log(response);
-  return response;
+  return response.data;
 };
 
 const register = async (user) => {
-  const endpoint = generateApiEndpoint("register")
-  const response = await axios.post(endpoint, user);
+  const endpoint = generateApiEndpoint("auth/register")
+  const response = await client.post(endpoint, user);
+  console.log("register service response : "+ response.data)
   
-  return response;
+  return response.data;
 };
 export const userService = {
   login,
   register,
+  refreshToken
 };

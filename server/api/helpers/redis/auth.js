@@ -14,12 +14,15 @@ const storeRefreshToken = async (refreshToken,refreshTokenUid) => {
 }   
 
 const validateRefreshToken = async (refreshToken) => {
+    console.log("refreshtokeninredis: "+ refreshToken);
     const result = await redisClient.hget(REFRESH_TOKEN_KEY,refreshToken)
+    console.log("validatetoken: "+result)
     return result;
 }
 
 const inValidateRefreshToken = async (refreshToken) => {
     const result = await redisClient.hdel(REFRESH_TOKEN_KEY,refreshToken);
+    return result;
 }
 
 module.exports = redisAuthHelper  ={
