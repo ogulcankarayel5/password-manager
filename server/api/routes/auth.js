@@ -5,13 +5,14 @@ const authController = require("../controllers/auth/auth-post.controller");
 const router = express.Router();
 const passport = require("passport");
 const { userValidationRules, validate } = require('../helpers/error/express-validator');
+const limiter = require("../helpers/limiters/auth.limiter");
 const authMiddleware = require('../middlewares/authorization/auth');
 
 
-router.post("/token",authMiddleware.getAccessToRefreshToken,authController.refreshToken)
-router.post("/register", userValidationRules(), validate,authController.register);
-router.post("/login", userValidationRules(), validate,authController.login);
-router.get("/google",passport.authenticate('google',{
+router.post("/token",limiter.refreshTokenLimiter,authMiddleware.getAccessToRefreshToken,authController.refreshToken)
+router.post("/register",limiter.registerLimiter,userValidationRules(), validate,authController.register);
+router.post("/login",limiter.loginLimiter, userValidationRules(), validate,authController.login);
+router.get("/google",limiter.registerLimiter,passport.authenticate('google',{
     session:false,
     scope:['profile','email'],
     accessType: 'offline',
