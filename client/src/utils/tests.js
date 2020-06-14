@@ -1,8 +1,8 @@
 
 
 import React from 'react'
-import checkPropTypes from 'check-prop-types';
 import {applyMiddleware,createStore} from 'redux';
+import checkPropTypes from 'check-prop-types';
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import rootReducer from '../reducers'

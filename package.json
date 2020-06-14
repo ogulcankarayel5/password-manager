@@ -1,6 +1,9 @@
 {
   "name": "password-manager",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  },
   "description": "Lucky password is a password manager app that created based on mern stack",
   "main": "server/server.js",
   "scripts": {
