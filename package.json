@@ -1,7 +1,7 @@
 {
-  "name": "password-manager-web",
+  "name": "password-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lucky password is a password manager app that created based on mern stack",
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
