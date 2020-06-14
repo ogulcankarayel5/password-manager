@@ -15,6 +15,14 @@ const refreshToken = async(refreshToken) => {
   return response.data;
 
 }
+
+const loginWithGoogle = async (accessToken) => {
+
+  const endpoint = generateApiEndpoint("auth/google/token");
+  const response = await client.post(endpoint,{access_token:accessToken});
+  console.log(response);
+  return response.data;
+}
 const login = async (user) => {
   const endpoint = generateApiEndpoint("auth/login")
   const response = await client.post(endpoint, user);
@@ -31,6 +39,7 @@ const register = async (user) => {
 };
 export const userService = {
   login,
+  loginWithGoogle,
   register,
   refreshToken
 };

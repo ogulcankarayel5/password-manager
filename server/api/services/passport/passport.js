@@ -3,7 +3,7 @@ const passport = require("passport");
 const authDb  = require("../../db/mongodb/auth/auth-post.db");
 const CustomError = require("../../helpers/error/CustomError");
 const userDb = require("../../db/mongodb/user/user-db");
-var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+var GoogleStrategy =  require("passport-google-token").Strategy;
 
 passport.serializeUser((user, done) => {
   console.log("serialize:" +JSON.stringify(user));
@@ -26,16 +26,17 @@ passport.use(
     {
       clientID: process.env.clientID,
       clientSecret: process.env.clientSecret,
-      callbackURL: "/api/auth/google/callback",
+      
      
     },
     async (accessToken, refreshToken, profile, done) => {
-      
+     
+      console.log("token: " +accessToken);
       try {
      
-        const { email } = profile._json;
+        const {email} = profile._json;
         console.log("profile: "+ JSON.stringify(profile._json));
-
+        console.log("email:" +email)
         const user = await userDb.findByEmail(email);
        
       

@@ -1,7 +1,7 @@
 import React from "react";
 
-import {motion} from 'framer-motion'
 
+import {GoogleLogin} from 'react-google-login';
 import { ReactComponent as GoogleSvg } from "../assets/icons/google.svg";
 import { ReactComponent as LinkedinSvg } from "../assets/icons/linkedin.svg";
 import {
@@ -12,7 +12,8 @@ import {
   SocialButtonComponent,
   SEO
 } from "../components";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import {authActions} from '../actions'
 import { Text } from "../shared";
 import { Link } from "react-router-dom";
 
@@ -20,7 +21,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 
 import { useForm } from "../hooks";
 
-import { validate } from "../utils";
+import { validate,generateApiEndpoint } from "../utils";
 
 import Reaptcha from 'reaptcha';
 import { withTheme } from "styled-components";
@@ -28,6 +29,8 @@ import { withTheme } from "styled-components";
 
 
 const Login = (props) => {
+
+  const dispatch=useDispatch();
   const initialState = {
     username: "",
     password: "",
@@ -41,6 +44,13 @@ const Login = (props) => {
   const submit = () => {
     console.log("hyyysbumt");
   };
+
+  const onClickGoogle = (res) => {
+    console.log(res);
+    dispatch(authActions.loginWithGoogle(res.accessToken));
+  }
+
+
 
 
 
@@ -72,6 +82,7 @@ const Login = (props) => {
    <SEO title="Login" description="Login Page"/>
    <form onSubmit={handleSubmit}>
           <div className="form-group form-group-error">
+            <a href="/api/auth/google">deneme</a>
             <FormInput
               className={`${errors.username && "input-error"}`}
               name="username"
@@ -114,9 +125,16 @@ const Login = (props) => {
          
           <Text marginTop={"3.5rem"}>Or</Text>
        
+          <GoogleLogin
+          
+          clientId="1082138651796-2a67u657k8sn5d4qhbg0ni8q6e29rboc.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={onClickGoogle}
+          onFailure={onClickGoogle}
+          />
           <SocialButtonComponent
           type="button"
-          onClick={()=>console.log("hello google")}
+          
             background={theme.colors.background}
             color={theme.colors.formSocialPrimaryColor}
             borderColor={theme.colors.formSocialPrimaryColor}

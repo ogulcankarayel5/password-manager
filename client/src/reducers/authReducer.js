@@ -26,7 +26,7 @@ export function authReducer(state = initialState, action) {
         user: null,
       };
     case authConstants.REGISTER_SUCCESS:
-    case authConstants.LOGIN_REQUEST:
+    case authConstants.LOGIN_SUCCESS:
     case authConstants.INITIALIZE_SUCCESS:
      
       return {

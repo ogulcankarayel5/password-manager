@@ -28,6 +28,7 @@ const register = asyncHandler(async (req, res, next) => {
 
 const signInWithGoogle = asyncHandler(async (req, res, next) => {
   //console.log(req)
+  
   const { user } = req;
   if (user === null) {
     return next(new CustomError("Kullanıcı ilişkilendirilemedi", 400));
