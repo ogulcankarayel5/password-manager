@@ -1,12 +1,9 @@
 import styled from "styled-components";
-
-export const ResponsiveImage = styled.img.attrs({
-  
-    alt:"img"
-  })
- `
-   height:auto;
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+export const ResponsiveImage = styled(LazyLoadImage)`
+ height:auto;
    max-width:100%;
- `
+
+`;
  
  

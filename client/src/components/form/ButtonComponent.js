@@ -1,11 +1,11 @@
 import React from "react";
-import { SocialButton } from "./";
+import { Button } from "./";
 import PropTypes from 'prop-types'
-export const SocialButtonComponent = React.memo(
-  ({ background="red", color="red", borderColor="red", svg, spanText="button", onClick, type="button" }) => {
-    console.log("socialbuttonrender");
+export const ButtonComponent = React.memo(
+  ({ background, color, borderColor, svg, spanText="button", onClick, type="button" }) => {
+    console.log("buttonrender");
     return (
-      <SocialButton
+      <Button
         data-test="buttonComponent"
         type={type}
         onClick={onClick}
@@ -15,7 +15,7 @@ export const SocialButtonComponent = React.memo(
       >
         {svg}
         {spanText}
-      </SocialButton>
+      </Button>
     );
   },
   (prevProps, nextProps) => {
@@ -25,7 +25,7 @@ export const SocialButtonComponent = React.memo(
   }
 );
 
-SocialButtonComponent.propTypes={
+ButtonComponent.propTypes={
   background:PropTypes.string,
   color:PropTypes.string,
   borderColor:PropTypes.string,

@@ -9,6 +9,7 @@ let isRefreshing = false;
 let failedQueue = [];
 
 const processQueue = (error, accessToken = null) => {
+  
   failedQueue.forEach(prom => {
     if (error) {
       prom.reject(error);
@@ -23,7 +24,7 @@ const processQueue = (error, accessToken = null) => {
 axios.interceptors.request.use(
     async config => {
         const accessToken = localStorage.getItem(REACT_APP_LOCALACCESS);
-
+        
         if(accessToken){
             config.headers['Authorization']=`Bearer:${accessToken}`
         }
@@ -45,30 +46,39 @@ axios.interceptors.response.use(
         const refreshToken = cookies.get(REACT_APP_REFRESHTOKEN)
       
         if(refreshToken){
+        
             if (error.response.status === 401 && !originalRequest._retry) {
+
                
+                
                 if (isRefreshing) {
+                 
                   return new Promise((resolve, reject) => {
                     failedQueue.push({ resolve, reject });
                   })
                     .then(accessToken => {
                       originalRequest.headers['Authorization'] =
-                        'Bearer ' + accessToken;
+                        'Bearer:' + accessToken;
+                        console.log("access: "+accessToken)
                       return axios(originalRequest);
                     })
                     .catch(err => {
+                      
                       return err;
                     });
                 }
                
-        
+                
                 originalRequest._retry = true;
+                console.log(originalRequest._retry)
                 isRefreshing = true;
                 const endpoint = generateApiEndpoint('auth/token');
+                
                 return new Promise((resolve, reject) => {
                   axios
                     .post(endpoint, { refreshToken })
                     .then(result => {
+                      
                       localStorage.setItem(
                         REACT_APP_LOCALACCESS,
                         result.data.access_token
@@ -84,18 +94,24 @@ axios.interceptors.response.use(
                       resolve(axios(originalRequest));
                     })
                     .catch(err => {
+                      
+                      
                       processQueue(err, null);
                       reject(err);
                     })
                     .then(() => {
+                      
                       isRefreshing = false;
                      
                     });
+                    //TODO:Eğer refresh tokenın da süresi dolmuşsa burda history.push oluyor. ama diğer tarafı bozuyor
                 });
+               
               }
+              history.push("/unauthorized")
         }
+        console.log("unauthroized")
         
-        history.push("/unauthorized")
         
         return Promise.reject(error);
     }

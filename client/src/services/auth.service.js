@@ -1,4 +1,4 @@
-import { setAuthToken ,generateApiEndpoint} from "../utils";
+import { generateApiEndpoint} from "../utils";
 
 import client from "./client";
 

@@ -1,14 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import { AnimatedRouteDiv } from "../shared";
-import { AppRoute, ProtectedRoute } from "./";
-import { CommonLayout, FormLayout, StartupSplash } from "../components";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import { HomePage, NotFound, Unauthorized } from "../pages";
+
+import lazy from "./lazy";
+import BounceLoader from "react-spinners/BounceLoader";
+import { CenterComponent } from "../components/startup/style";
 import posed, { PoseGroup } from "react-pose";
 import img from "../assets/images/form.png";
+const AppRoute = lazy(() => import("./"), "AppRoute");
+const FormLayout = lazy(() => import("../components"), "FormLayout");
+const StartupSplash = lazy(() => import("../components"), "StartupSplash");
+const CommonLayout = lazy(() => import("../components"), "CommonLayout");
+const Unauthorized = lazy(() => import("../pages"), "Unauthorized");
+const NotFound = lazy(() => import("../pages"), "NotFound");
+const HomePage = lazy(() => import("../pages"), "HomePage");
+const Login = lazy(() => import("../pages/Login"));
+const Register = lazy(() => import("../pages/Register"));
 
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 150, beforeChildren: true },
@@ -19,31 +25,44 @@ export const MainRouter = () => {
   const location = useLocation();
 
   return (
-    <PoseGroup>
-      <RouteContainer key={location.pathname}>
-        <Switch location={location}>
-          <AppRoute exact path="/" component={HomePage} layout={CommonLayout} />
-          <Route path="/unauthorized" component={Unauthorized} />
-
-          <AppRoute
-            img={img}
-            path="/login"
-            component={Login}
-            layout={FormLayout}
-          />
-
+    <Suspense
+      fallback={
+        <CenterComponent>
+          <BounceLoader color={"#56DDC3"} />
+        </CenterComponent>
+      }
+    >
+      <PoseGroup>
+        <RouteContainer key={location.pathname}>
           <StartupSplash>
-            <AppRoute
-              img={img}
-              path="/register"
-              component={Register}
-              layout={FormLayout}
-            />
-          </StartupSplash>
+            <Switch location={location}>
+              <AppRoute
+                exact
+                path="/"
+                component={HomePage}
+                layout={CommonLayout}
+              />
+              <Route path="/unauthorized" component={Unauthorized} />
 
-          <Route path="*" component={NotFound} />
-        </Switch>
-      </RouteContainer>
-    </PoseGroup>
+              <AppRoute
+                img={img}
+                path="/login"
+                component={Login}
+                layout={FormLayout}
+              />
+
+              <AppRoute
+                img={img}
+                path="/register"
+                component={Register}
+                layout={FormLayout}
+              />
+
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </StartupSplash>
+        </RouteContainer>
+      </PoseGroup>
+    </Suspense>
   );
 };

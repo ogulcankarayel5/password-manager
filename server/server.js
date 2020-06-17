@@ -1,6 +1,6 @@
 
 const express = require("express");
-
+const compression = require('compression');
 const dotenv=require("dotenv");
 const path=require("path");
 const cors=require("cors");
@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 5000;
 require('./api/services/passport/passport');
 
 
-
+app.use(compression());
 app.use(express.json());
 app.use(passport.initialize());
 app.use(cors());

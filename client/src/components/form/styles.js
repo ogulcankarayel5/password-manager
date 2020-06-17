@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { GoogleLogin } from "react-google-login";
 import {  Text } from "../../shared";
 import {defaultFlex} from '../../shared/styles'
 
@@ -67,7 +68,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const SocialButton = styled.button`
+const Button = styled.button`
   ${defaultFlex};
   letter-spacing: 0.1rem;
   font-size: ${(props) => props.fontSize ?? "2rem"};
@@ -89,8 +90,7 @@ const SocialButton = styled.button`
   }
 `;
 
-
-SocialButton.defaultProps={
+Button.defaultProps={
   theme:{
     colors:{
       background:"#FFFFFF",
@@ -99,7 +99,7 @@ SocialButton.defaultProps={
   }
 
 }
-SocialButton.displayName="SocialButton"
+Button.displayName="SocialButton"
 
 const ErrorText = styled(Text)`
   font-size: 1.4rem;
@@ -146,4 +146,4 @@ Input.defaultProps={
   }
 }
 
-export { SocialButton, FormWrapper, FormSide, ErrorText,Input };
+export { Button, FormWrapper, FormSide, ErrorText,Input };

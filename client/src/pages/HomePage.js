@@ -7,12 +7,12 @@ import {authActions} from '../actions'
 
 export const HomePage = () => {
    console.log("home")
-   //  const dispatch= useDispatch()
-   //  useEffect(()=>{
-   //      dispatch(authActions.register({name:"sel1war11",email:"k21w@gmail.com",password:"1331313131"}));
-   //  },[])
+    //  const dispatch= useDispatch()
+    //  useEffect(()=>{
+    //      dispatch(authActions.register({name:"sel1wawr11",email:"k21w@wgmail.com",password:"1331313131"}));
+    //  },[])
 
-
+   
   
     return (
        <>

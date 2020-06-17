@@ -1,5 +1,5 @@
 
-export * from './FormHoc';
+export * from './Form'
 export * from './FormInput'
-export * from './SocialButtonComponent'
+export * from './ButtonComponent'
 export * from './styles'

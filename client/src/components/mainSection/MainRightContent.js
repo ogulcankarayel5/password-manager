@@ -8,7 +8,7 @@ import {RightContainer} from './styles'
 export const MainRightContent = () => {
     return (
       <RightContainer>
-           <ResponsiveImage src={bg}/>
+           <ResponsiveImage effect="blur" alt={"img"} src={bg}/>
       </RightContainer>
     )
 }

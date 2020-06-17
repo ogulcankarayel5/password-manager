@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import {Helmet} from 'react-helmet-async'
 
 
-export const SEO = ({title="Home",description="Welcome to LuckyPassword"}) => {
+export const SEO = React.memo(({title="Home",description="Welcome to LuckyPassword"}) => {
+    console.log("heyyseo")
     return (
         <Helmet>
             <title>{title}</title>
@@ -17,7 +18,7 @@ export const SEO = ({title="Home",description="Welcome to LuckyPassword"}) => {
 
         </Helmet>
     )
-}
+})
 
 SEO.propTypes = {
     title:PropTypes.string.isRequired,

@@ -9,16 +9,19 @@ export const GlobalStyle = createGlobalStyle`
   src: url(${IndieFlower}) format('truetype');
   font-style: normal;
   font-weight:300;
-  font-display:auto;
+  font-display:swap;
+  
 }
 
 @font-face {
   font-family: 'Source Sans Pro';
   src: url(${SourceSansPro}) format('truetype');
+  font-display: swap;
 }
 @font-face {
   font-family:'Open Sans';
   src: url(${OpenSans}) format('truetype');
+  font-display: swap;
 }
 *{
   margin:0;
