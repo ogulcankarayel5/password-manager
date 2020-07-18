@@ -2,7 +2,7 @@ import React from "react";
 
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Form } from "../components/form/Form";
-import { authActions, errorActions } from "../actions";
+import { authActions, errorActions } from "../store/actions";
 import { useForm } from "../hooks";
 import { validate } from "../utils";
 import { SEO } from "../components";

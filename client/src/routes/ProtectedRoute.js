@@ -16,7 +16,7 @@ export const ProtectedRoute = ({
     <Route
       {...rest}
       render={(props) =>
-        (isAuthenticated === true || (!isAuthenticated && refreshToken)) ? (
+        (isAuthenticated === true || (isAuthenticated===false && refreshToken)) ? (
           <Layout>
             <Component {...props} />
           </Layout>

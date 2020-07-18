@@ -1,41 +1,32 @@
-import { generateApiEndpoint} from "../utils";
 
-import client from "./client";
-
-
+import {postMethod} from '../API'
 
 
 const refreshToken = async(refreshToken) => {
 
-  const endpoint = generateApiEndpoint("auth/token");
- console.log(endpoint)
-  console.log("in service: "+ refreshToken)
-  const response = await client.post(endpoint,{refreshToken})
-  
-  return response.data;
+  const response = await postMethod("auth/token",refreshToken);
+  console.log("in service: "+ response)
+  return response;
 
+  
+ 
 }
 
 const loginWithGoogle = async (accessToken) => {
+    const response = await postMethod("auth/google/token",null,{access_token:accessToken})
+    console.log(response);
+    return response;
 
-  const endpoint = generateApiEndpoint("auth/google/token");
-  const response = await client.post(endpoint,{access_token:accessToken});
-  console.log(response);
-  return response.data;
 }
 const login = async (user) => {
-  const endpoint = generateApiEndpoint("auth/login")
-  const response = await client.post(endpoint, user);
-  console.log(response);
-  return response.data;
+ 
 };
 
 const register = async (user) => {
-  const endpoint = generateApiEndpoint("auth/register")
-  const response = await client.post(endpoint, user);
-  console.log("register service response : "+ response.data)
-  
-  return response.data;
+  const response = await postMethod("auth/register",null,user);
+  return response;
+  console.log(response)
+
 };
 export const userService = {
   login,

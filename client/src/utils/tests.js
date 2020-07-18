@@ -5,7 +5,7 @@ import {applyMiddleware,createStore} from 'redux';
 import checkPropTypes from 'check-prop-types';
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import rootReducer from '../reducers'
+import rootReducer from '../store/reducers'
 import {middleware} from '../utils'
 import { HelmetProvider } from 'react-helmet-async';
 

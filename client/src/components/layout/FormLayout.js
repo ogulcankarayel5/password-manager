@@ -20,7 +20,7 @@ export const FormLayout = ({ children, img }) => {
         </FormSide>
 
         <ImgSide>
-          <ResponsiveImage effect="blur" alt={"img"} src={img} />
+          <ResponsiveImage effect="blur" alt={"img"} src={"https://res.cloudinary.com/ogulcankarayel-digital/image/upload/v1592483351/form_tjje0g.png"} />
         </ImgSide>
       </FormLayoutContainer>
   

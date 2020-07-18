@@ -38,10 +38,10 @@ const prepareRefreshToken = (user) => {
  
   const {JWT_REFRESH_SECRET_KEY,JWT_REFRESH_EXPIRE} = process.env;
   const refreshToken = user.generateJwtFromUser(JWT_REFRESH_SECRET_KEY,JWT_REFRESH_EXPIRE)
-  const refreshTokenUid = randToken.uid(256);
   
-  redisAuthHelper.storeRefreshToken(refreshToken,refreshTokenUid);
-  return refreshTokenUid;
+  
+  redisAuthHelper.storeRefreshToken(refreshToken,user._id);
+  return refreshToken;
 }
 
 

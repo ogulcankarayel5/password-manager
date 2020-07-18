@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { clearErrors } from "../actions";
+import { clearErrors } from "../store/actions";
 import { Validate } from "../utils";
 
 export const useForm = (initialState, validate, callback, formType) => {

@@ -2,22 +2,24 @@ const {redisClient} = require("./client");
 
 const REFRESH_TOKEN_KEY="refresh_tokens";
 
-const storeRefreshToken = async (refreshToken,refreshTokenUid) => {
+const storeRefreshToken = async (refreshToken,userId) => {
     //daha önceki tokenları temizliyoruz ki yeni üretilen bir refresh token yerine,eski bir token kullanılarak yeni bir access token üretilemesin
     redisClient.flushall();
     
-    const result = await redisClient.hset(
-        REFRESH_TOKEN_KEY,
-        refreshTokenUid,
-        refreshToken
+    const result = await redisClient.set(
+        
+        JSON.stringify(userId),
+        refreshToken,
+        'EX',
+        7*24*60*6000
     )
 
     return result;
 }   
 
-const validateRefreshToken = async (refreshToken) => {
-    console.log("refreshtokeninredis: "+ refreshToken);
-    const result = await redisClient.hget(REFRESH_TOKEN_KEY,refreshToken)
+const validateRefreshToken = async (userId) => {
+    console.log("refreshtokeninredis: "+ userId);
+    const result = await redisClient.get(JSON.stringify(userId))
     console.log("validatetoken: "+result)
     return result;
 }

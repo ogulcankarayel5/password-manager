@@ -1,8 +1,8 @@
-import { authConstants } from "../constants";
+import { authConstants } from "../../constants";
 import Cookies from "universal-cookie";
-import { userService, accountService } from "../services";
-import { history, getTokens } from "../utils";
-import { errorActions } from "./";
+import { userService, accountService } from "../../services";
+import { history, getTokens } from "../../utils";
+import { errorActions } from ".";
 const cookies = new Cookies();
 //plain actions
 
@@ -79,6 +79,7 @@ const initializeUser = () => async (dispatch) => {
       access_token: accessToken,
       data: user,
     };
+    localStorage.setItem(REACT_APP_LOCALACCESS,accessToken);
 
     dispatch(initializeUserSuccess(payload));
   } catch (err) {
@@ -125,13 +126,16 @@ const register = (user) => async (dispatch) => {
   try {
     dispatch(registerRequest());
     const response = await userService.register(user);
-    console.log("register action response : " + response.data._id);
-    dispatch(registerSuccess(response));
+ 
+    console.log(response.data)
+    console.log(response)
+    dispatch(registerSuccess(response.data));
+    console.log("hey")
     localStorage.setItem(REACT_APP_LOCALACCESS, response.access_token);
   } catch (err) {
-    console.log(err.response);
+    console.log(err.data);
     dispatch(registerFailure());
-    dispatch(errorActions.setErrors(err.response.data, err.response.status));
+    dispatch(errorActions.setErrors(err.data, err.status));
   }
 };
 

@@ -19,6 +19,7 @@
     "react-pose": "^4.0.10",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
+    "react-router-transition": "^2.0.0",
     "react-scripts": "3.4.1",
     "react-spinners": "^0.8.3",
     "react-toastify": "^6.0.4",

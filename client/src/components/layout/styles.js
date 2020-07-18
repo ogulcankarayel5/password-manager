@@ -6,7 +6,7 @@ import {motion} from 'framer-motion'
 const CommonLayoutContainer = styled.div`
   height: 100vh;
   display: grid;
-  background-image:url(${img});
+  background-image:url('https://res.cloudinary.com/ogulcankarayel-digital/image/upload/v1592482650/bg1_xtpgnp.png');
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-position:center;

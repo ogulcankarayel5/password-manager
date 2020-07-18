@@ -8,7 +8,7 @@ import {RightContainer} from './styles'
 export const MainRightContent = () => {
     return (
       <RightContainer>
-           <ResponsiveImage effect="blur" alt={"img"} src={bg}/>
+           <ResponsiveImage effect="blur" alt={"img"} src={"https://res.cloudinary.com/ogulcankarayel-digital/image/upload/v1592483350/bg2_n7zsha.png"}/>
       </RightContainer>
     )
 }

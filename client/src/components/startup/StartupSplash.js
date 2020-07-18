@@ -5,7 +5,7 @@ import BounceLoader from "react-spinners/BounceLoader";
 
 import { useSelector, useDispatch } from "react-redux";
 import { userService } from "../../services";
-import { authActions, errorActions } from "../../actions";
+import { authActions, errorActions } from "../../store/actions";
 
 import { isTokenExpired, setAuthToken, getTokens, history } from "../../utils";
 
@@ -24,11 +24,11 @@ export const StartupSplash = (props) => {
    console.log("refresh: ", refreshToken);
    console.log("access: ", accessToken);
 
-   if (!accessToken || !refreshToken) {
+   if (!accessToken || !refreshToken || accessToken===undefined || refreshToken===undefined) {
      console.log("no token");
 
      dispatch(authActions.initializeUserFailure());
-     history.push("/login");
+     //history.push("/login");
      return;
      //return setBusy(false)
    }

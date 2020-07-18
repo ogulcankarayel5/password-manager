@@ -1,4 +1,4 @@
-import {errorConstants} from '../constants';
+import {errorConstants} from '../../constants';
 
 const setErrors = (err,status) => {
 

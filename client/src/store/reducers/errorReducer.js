@@ -1,4 +1,4 @@
-import {errorConstants} from '../constants';
+import {errorConstants} from '../../constants';
 
 
 const initialState = {
@@ -14,7 +14,7 @@ export function errorReducer(state=initialState,action){
            
             return {
                 ...state,
-                errors:[...state.errors,action.payload.data],
+                errors:[...state.errors,action.payload],
                 status:action.status,
 
 

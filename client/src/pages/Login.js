@@ -3,7 +3,7 @@ import React from "react";
 import { Form } from "../components/form";
 import { SEO } from "../components";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { authActions } from "../actions";
+import { authActions } from "..//store/actions";
 
 import { useForm } from "../hooks";
 

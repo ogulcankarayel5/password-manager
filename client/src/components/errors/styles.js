@@ -10,7 +10,7 @@ export const StatusErrorDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background: url(${img}),
+  background: url("https://res.cloudinary.com/ogulcankarayel-digital/image/upload/v1592483350/p404_h6krya.png"),
     ${(props) => props.theme.colors.statusErrorBackground};
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 

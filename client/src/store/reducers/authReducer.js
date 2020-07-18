@@ -1,4 +1,4 @@
-import { authConstants } from "../constants";
+import { authConstants } from "../../constants";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
