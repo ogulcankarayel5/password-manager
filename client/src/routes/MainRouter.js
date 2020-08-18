@@ -17,9 +17,10 @@ const HomePage = lazy(() => import("../pages"), "HomePage");
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
 
+
 export const MainRouter = () => {
   const location = useLocation();
-
+ 
   return (
     <Suspense
       fallback={
@@ -29,21 +30,31 @@ export const MainRouter = () => {
       }
     >
       <Switch>
-        <AppRoute exact path="/" component={HomePage} layout={CommonLayout} />
-        <Route path="/unauthorized" component={Unauthorized} />
-      
-         
-        <Route exact path={["/login","/register"]}>
-          <StartupSplash>
-            <Switch>
-              <AppRoute path="/login" component={Login} layout={FormLayout}/>
-              <AppRoute path="/register" component={Register} layout={FormLayout}/>
-              <Route path="*" component={NotFound} />
-            </Switch>
-          </StartupSplash>
-        </Route>
-           
        
+        <Route path="/unauthorized" component={Unauthorized} />
+        <AppRoute path="/login" component={Login} layout={FormLayout} exact />
+        {/* <Route exact path={["/login", "/register"]}>
+          <Switch>
+            <AppRoute path="/login" component={Login} layout={FormLayout} />
+            <AppRoute
+              path="/register"
+              component={Register}
+              layout={FormLayout}
+            />
+          </Switch>
+        </Route> */}
+        <Route
+          path="/"
+          render={({ match: { url } }) => (
+          
+             
+             <AppRoute exact path={`${url}/`} component={HomePage} layout={CommonLayout} />
+           
+          
+          
+          )}
+        />
+
         <Route path="*" component={NotFound} />
       </Switch>
     </Suspense>

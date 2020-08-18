@@ -37,7 +37,7 @@ const getAccessToRefreshToken = async (req, res, next) => {
           if (result === req.body.refreshToken) {
             return next();
           } else {
-            return next(new CustomError("Invalid refresh token", 401));
+            return next(new CustomError("Invalid refresh token..", 401));
           }
         } else {
           return next(

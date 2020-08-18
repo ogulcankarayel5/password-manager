@@ -41,11 +41,17 @@ axios.interceptors.response.use(
     console.log(status);
     console.log(data);
     const refreshToken = cookies.get(REACT_APP_REFRESHTOKEN);
-
+   
     if (refreshToken) {
+      console.log(refreshToken)
       if (error.response.status===401 && data.message === "Invalid refresh token") {
-        console.log("unauthroized");
-        history.push("/unauthorized");
+        console.log("unauthorized");
+        history.push("/");
+        return;
+      }
+      if(error.response.status === 401 && data.message === "You are not authorized to access this route,you don't have a valid refresh token to create new access token "){
+        console.log("invalid refresh token");
+        history.push("/");
         return;
       }
 

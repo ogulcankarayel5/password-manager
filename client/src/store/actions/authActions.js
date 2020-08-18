@@ -65,8 +65,22 @@ const registerFailure = () => {
 
 //thunk
 
+const logout = () => async (dispatch) => {
+  try{
+    const { REACT_APP_LOCALACCESS, REACT_APP_REFRESHTOKEN } = process.env;
+    dispatch(initializeUserRequest());
+    localStorage.removeItem(REACT_APP_LOCALACCESS);
+    cookies.remove(REACT_APP_REFRESHTOKEN);
+    dispatch(initializeUserFailure());
+  }
+  catch(err){
+    console.log(err.response);
+    dispatch(initializeUserFailure());
+    dispatch(errorActions.setErrors(err.response));
+  }
+}
 const initializeUser = () => async (dispatch) => {
-  const { REACT_APP_LOCALACCESS } = process.env;
+ 
   try {
     const { REACT_APP_LOCALACCESS, REACT_APP_REFRESHTOKEN } = process.env;
     //requestı kaldırdım çünkü her saydfada initial oldugu ıcın requestte herşey sıfırlanıyor. Sonuç çıkana kadar işler olmuyor. Sonradan düzenleme yapıp ekleyince düzeldi gibi
@@ -110,7 +124,7 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
   try {
     dispatch(loginRequest());
     const response = await userService.loginWithGoogle(accessToken);
-    console.log("in actiong google: "+JSON.stringify(response))
+    console.log("response google action: ",response.access_token)
     localStorage.setItem(REACT_APP_LOCALACCESS, response.access_token);
     dispatch(loginSuccess(response));
     history.push("/");
@@ -150,4 +164,5 @@ export const authActions = {
   registerSuccess,
   registerFailure,
   initializeUserFailure,
+  logout
 };

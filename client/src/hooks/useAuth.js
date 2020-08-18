@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
-
-import { CenterComponent } from "./style";
-import BounceLoader from "react-spinners/BounceLoader";
-
+import React,{useEffect} from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { userService } from "../../services";
-import { authActions, errorActions } from "../../store/actions";
+import { userService } from "../services";
+import { authActions, errorActions } from "../store/actions";
 
-import { isTokenExpired, setAuthToken, getTokens, history } from "../../utils";
+import { isTokenExpired, setAuthToken, getTokens, history } from "../utils";
 
-export const StartupSplash = (props) => {
+export default function useAuth() {
+
   const dispatch = useDispatch();
-
-  const { loading } = useSelector((state) => ({
-    loading: state.authReducer.loading,
-  }));
-
   useEffect(() => {
     // burada dispatch yapılabilir initializerequest ile ve tek bir loading ile iş çözülebilir
     const { accessToken, refreshToken } = getTokens();
@@ -71,17 +63,5 @@ export const StartupSplash = (props) => {
       }
     }
   }, []);
-
-  const { children } = props;
-
-  return (
-    //    !isBusy ? children : <div>bekleyin</div>
-    loading ? (
-      <CenterComponent>
-        <BounceLoader color={"#56DDC3"} />
-      </CenterComponent>
-    ) : (
-      children
-    )
-  );
-};
+  return {}
+}

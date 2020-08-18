@@ -4,7 +4,8 @@ import {postMethod} from '../API'
 
 const refreshToken = async(refreshToken) => {
 
-  const response = await postMethod("auth/token",refreshToken);
+  console.log(refreshToken)
+  const response = await postMethod("auth/token",null,{refreshToken:refreshToken});
   console.log("in service: "+ response)
   return response;
 
@@ -14,8 +15,8 @@ const refreshToken = async(refreshToken) => {
 
 const loginWithGoogle = async (accessToken) => {
     const response = await postMethod("auth/google/token",null,{access_token:accessToken})
-    console.log(response);
-    return response;
+    console.log(response.data);
+    return response.data;
 
 }
 const login = async (user) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 
 import { Form } from "../components/form";
 import { SEO } from "../components";
@@ -7,12 +7,22 @@ import { authActions } from "..//store/actions";
 
 import { useForm } from "../hooks";
 
-import { validate } from "../utils";
+import { validate,history } from "../utils";
 
 import { withTheme } from "styled-components";
 
 const Login = (props) => {
   const dispatch = useDispatch();
+  const { user, serverErrors,isAuthenticated } = useSelector(
+    (state) => ({
+      user: state.authReducer.user,
+      serverErrors: state.errorReducer.errors,
+      isAuthenticated:state.authReducer.isAuthenticated
+    }),
+    shallowEqual
+  );
+
+
   const initialState = {
     username: "",
     password: "",
@@ -37,13 +47,7 @@ const Login = (props) => {
     handleReCAPTCHA,
   } = useForm(initialState, validate, submit, "login");
 
-  const { user, serverErrors } = useSelector(
-    (state) => ({
-      user: state.authReducer.user,
-      serverErrors: state.errorReducer.errors,
-    }),
-    shallowEqual
-  );
+  
   console.log("login");
   console.log(user);
   

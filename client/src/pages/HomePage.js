@@ -9,7 +9,7 @@ export const HomePage = () => {
    console.log("home")
     //  const dispatch= useDispatch()
     //  useEffect(()=>{
-    //      dispatch(authActions.register({name:"sel1wswwwdsssswdsa1w",email:"k2w@wssssddwsgwsmww1sails.com",password:"1331313131"}));
+    //      dispatch(authActions.register({name:"sel1wswwwwdssswswdsa1w",email:"k2w@wssswwsddwsgwsmww1sails.com",password:"1331313131"}));
     //  },[])
 
    
