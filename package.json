@@ -28,7 +28,7 @@
   "homepage": "https://github.com/ogulcankarayel5/password-manager-web#readme",
   "dependencies": {
     "async-redis": "^1.1.7",
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "compression": "^1.7.4",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
