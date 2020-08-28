@@ -11,6 +11,7 @@ export const useForm = (initialState, validate, callback, formType) => {
   useEffect(() => {
     console.log("error");
     if (Object.keys(errors).length === 0 && isSubmitting && reCaptcha) {
+      console.log("deneme")
       callback();
 
       //loadingi beklemesi lazım

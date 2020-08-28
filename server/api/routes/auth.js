@@ -12,6 +12,8 @@ const authMiddleware = require('../middlewares/authorization/auth');
 router.post("/token",limiter.refreshTokenLimiter,authMiddleware.getAccessToRefreshToken,authController.refreshToken)
 router.post("/register",limiter.registerLimiter,userValidationRules(), validate,authController.register);
 router.post("/login",limiter.loginLimiter, userValidationRules(), validate,authController.login);
+router.get("/logout",authMiddleware.getAccessToRoute,authController.logout)
+
 router.post("/google/token",limiter.registerLimiter,passport.authenticate('google-token',{scope:['profile','email','openid']}),authController.signInWithGoogle);
 
 router.get("/google/callback",passport.authenticate('google'),authController.signInWithGoogle);

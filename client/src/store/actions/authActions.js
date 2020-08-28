@@ -1,7 +1,7 @@
 import { authConstants } from "../../constants";
 import Cookies from "universal-cookie";
 import { userService, accountService } from "../../services";
-import { history, getTokens } from "../../utils";
+import { history, getTokens,setToken,removeTokens } from "../../utils";
 import { errorActions } from ".";
 const cookies = new Cookies();
 //plain actions
@@ -67,13 +67,20 @@ const registerFailure = () => {
 
 const logout = () => async (dispatch) => {
   try{
-    const { REACT_APP_LOCALACCESS, REACT_APP_REFRESHTOKEN } = process.env;
+    // response gelmiyor çünkü api isteği yok bu yüzden catch içindeki err undefined. Api tarafıda logout oluşturup accesstoroute middlewareni koy ordan hata döndür 
+    //logouttan da 401 hatası dönünce döngüye giriyor
     dispatch(initializeUserRequest());
-    localStorage.removeItem(REACT_APP_LOCALACCESS);
-    cookies.remove(REACT_APP_REFRESHTOKEN);
+    //const {refreshToken,accessToken} = getTokens();
+    //const response = await userService.logout();
+    //console.log(response);
+    await removeTokens();
+    
     dispatch(initializeUserFailure());
+    console.log("logout")
+    history.push("/");
   }
   catch(err){
+    console.log(err.response)
     console.log(err.response);
     dispatch(initializeUserFailure());
     dispatch(errorActions.setErrors(err.response));
@@ -82,10 +89,12 @@ const logout = () => async (dispatch) => {
 const initializeUser = () => async (dispatch) => {
  
   try {
-    const { REACT_APP_LOCALACCESS, REACT_APP_REFRESHTOKEN } = process.env;
+  
     //requestı kaldırdım çünkü her saydfada initial oldugu ıcın requestte herşey sıfırlanıyor. Sonuç çıkana kadar işler olmuyor. Sonradan düzenleme yapıp ekleyince düzeldi gibi
     dispatch(initializeUserRequest());
+    console.log("heyyy")
     const user = await accountService.getCurrentUser();
+    console.log("heyyy")
     const { accessToken, refreshToken } = getTokens();
     console.log(accessToken + "heyyy " + refreshToken);
     const payload = {
@@ -93,22 +102,23 @@ const initializeUser = () => async (dispatch) => {
       access_token: accessToken,
       data: user,
     };
-    localStorage.setItem(REACT_APP_LOCALACCESS,accessToken);
+    setToken(accessToken);
 
     dispatch(initializeUserSuccess(payload));
+    history.push("/");
   } catch (err) {
-    console.log(err.response);
+    console.log(err)
     dispatch(initializeUserFailure());
-    dispatch(errorActions.setErrors(err.response));
+    dispatch(errorActions.setErrors(err.data,err.status));
   }
 };
 const login = (user) => async (dispatch) => {
-  const { REACT_APP_LOCALACCESS } = process.env;
+ 
   try {
     console.log(user);
     dispatch(loginRequest());
     const response = await userService.login(user);
-    localStorage.setItem(REACT_APP_LOCALACCESS, response.access_token);
+    setToken(response.access_token);
 
     dispatch(loginSuccess(response));
     history.push("/");
@@ -120,12 +130,12 @@ const login = (user) => async (dispatch) => {
 };
 
 const loginWithGoogle = (accessToken) => async (dispatch) => {
-  const { REACT_APP_LOCALACCESS } = process.env;
+ 
   try {
     dispatch(loginRequest());
     const response = await userService.loginWithGoogle(accessToken);
     console.log("response google action: ",response.access_token)
-    localStorage.setItem(REACT_APP_LOCALACCESS, response.access_token);
+    setToken(response.access_token);
     dispatch(loginSuccess(response));
     history.push("/");
   } catch (err) {
@@ -146,6 +156,7 @@ const register = (user) => async (dispatch) => {
     dispatch(registerSuccess(response.data));
     console.log("hey")
     localStorage.setItem(REACT_APP_LOCALACCESS, response.access_token);
+    history.push("/");
   } catch (err) {
     console.log(err.data);
     dispatch(registerFailure());

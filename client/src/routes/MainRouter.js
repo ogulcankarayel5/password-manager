@@ -3,7 +3,7 @@ import { Switch, Route, useLocation } from "react-router-dom";
 
 import lazy from "./lazy";
 import BounceLoader from "react-spinners/BounceLoader";
-import { CenterComponent } from "../components/startup/style";
+import { CenterComponent } from "../components/auth/style";
 
 import img from "../assets/images/form.png";
 const ProtectedRoute = lazy(() => import("./"), "ProtectedRoute");

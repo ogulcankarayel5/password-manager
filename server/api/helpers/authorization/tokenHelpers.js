@@ -1,5 +1,6 @@
 const randToken = require('rand-token')
-const redisAuthHelper = require("../redis/auth")
+const redisAuthHelper = require("../redis/auth");
+const { refreshToken } = require('../../controllers/auth/auth-post.controller');
 
 
 const responseUserWithTokens = (res,user) => {
@@ -24,6 +25,10 @@ const responseUserWithTokens = (res,user) => {
   });
 
 
+}
+
+const removeRefreshTokensForLogout = async (refreshToken) => {
+  await redisAuthHelper.deleteAllTokens();
 }
 
 const prepareJwtToken = user => {
@@ -61,5 +66,5 @@ const getAccessTokenFromHeader = authorization => {
   return access_token;
 }
 
-module.exports=tokenHelpers ={isTokenIncluded,getAccessTokenFromHeader,prepareRefreshToken,prepareJwtToken,responseUserWithTokens };
+module.exports=tokenHelpers ={isTokenIncluded,getAccessTokenFromHeader,prepareRefreshToken,prepareJwtToken,responseUserWithTokens,removeRefreshTokensForLogout };
 //export { sendJwt,isTokenIncluded,getAccessTokenFromHeader };

@@ -7,4 +7,4 @@ export * from './Footer';
 export * from './errors';
 export * from './form';
 export * from './seo'
-export * from './startup'
+export * from './auth'

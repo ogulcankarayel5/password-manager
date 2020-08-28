@@ -3,9 +3,11 @@ const {redisClient} = require("./client");
 const REFRESH_TOKEN_KEY="refresh_tokens";
 
 const storeRefreshToken = async (refreshToken,userId) => {
-    //daha önceki tokenları temizliyoruz ki yeni üretilen bir refresh token yerine,eski bir token kullanılarak yeni bir access token üretilemesin
-    redisClient.flushall();
-    
+    //daha önceki tokenları temizliyoruz ki yeni üretilen bir refresh token yerine,eski bir token kullanılarak yeni bir access token üretilemesin. // bunu kaldırdım mantıksız
+    //redisClient.flushall();
+    const res = await inValidateRefreshToken(JSON.stringify(userId));
+    console.log("res: "+res);
+    //user id keyi ile daha önceki refresh tokenlarını silmeliyim ki eski bir refresh tokenı expire time geçmemiş olmasına rağmen logout yaptıktan sonra kullanamasın 
     const result = await redisClient.set(
         
         JSON.stringify(userId),
@@ -29,10 +31,16 @@ const inValidateRefreshToken = async (refreshToken) => {
     return result;
 }
 
+const deleteAllTokens = async () => {
+ const result = await redisClient.flushall();
+ return result; 
+}
+
 
 
 module.exports = redisAuthHelper  ={
     storeRefreshToken,
     validateRefreshToken,
-    inValidateRefreshToken
+    inValidateRefreshToken,
+    deleteAllTokens
 }

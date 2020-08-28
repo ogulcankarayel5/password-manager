@@ -49,6 +49,24 @@ const login = asyncHandler(async (req, res, next) => {
   tokenHelpers.responseUserWithTokens(res, user);
 });
 
+const logout = asyncHandler(async (req,res,next) => {
+  console.log("logout:");
+  const {  NODE_ENV } = process.env;
+ 
+  await tokenHelpers.removeRefreshTokensForLogout();
+
+  return res.status(200)
+  .cookie({
+    expires:new Date(Date.now()),
+    secure: NODE_ENV === "development" ? false : true,
+  }).json({
+    success:true,
+    message:"Logout successfull"
+  })
+
+
+})
+
 const refreshToken = asyncHandler(async (req, res, next) => {
   console.log("refresh controller:" + req.body.refreshToken);
   //body kısmında yollanan refresh token redis dbde kontrol ediyoruz.
@@ -75,5 +93,6 @@ module.exports = authController = {
   login,
   refreshToken,
   signInWithGoogle,
+  logout
 };
 //export { registerController,loginController };

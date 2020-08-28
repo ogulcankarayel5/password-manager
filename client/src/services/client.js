@@ -1,7 +1,11 @@
 import axios from "axios";
-import { history } from "../utils";
+
+import { setToken } from "../utils";
 import Cookies from "universal-cookie";
-import { generateApiEndpoint } from "../utils";
+import { generateApiEndpoint,store } from "../utils";
+import { authActions } from './../store/actions/authActions';
+import callAxios from './../API/callAxios';
+import { postMethod } from "../API";
 const cookies = new Cookies();
 const { REACT_APP_LOCALACCESS } = process.env;
 
@@ -36,23 +40,24 @@ axios.interceptors.response.use(
   async (error) => {
     const { REACT_APP_LOCALACCESS, REACT_APP_REFRESHTOKEN } = process.env;
     const { status, data } = error.response;
-    console.log(error.config._retry);
+    // console.log(error.config._retry);
     const originalRequest = error.config;
-    console.log(status);
-    console.log(data);
+    // console.log(status);
+    // console.log(data);
     const refreshToken = cookies.get(REACT_APP_REFRESHTOKEN);
    
     if (refreshToken) {
       console.log(refreshToken)
       if (error.response.status===401 && data.message === "Invalid refresh token") {
         console.log("unauthorized");
-        history.push("/");
+       store.dispatch(authActions.logout());
         return;
       }
       if(error.response.status === 401 && data.message === "You are not authorized to access this route,you don't have a valid refresh token to create new access token "){
         console.log("invalid refresh token");
-        history.push("/");
-        return;
+        console.log(error.response)
+        store.dispatch(authActions.logout());
+        return error.response;
       }
 
       if (error.response.status === 401 && !originalRequest._retry) {
@@ -77,17 +82,17 @@ axios.interceptors.response.use(
         originalRequest._retry = true;
         console.log(originalRequest._retry);
         isRefreshing = true;
-        const endpoint = generateApiEndpoint("auth/token");
+        //const endpoint = generateApiEndpoint("auth/token");
 
         return new Promise((resolve, reject) => {
-          axios
-            .post(endpoint, { refreshToken })
-            .then((result) => {
-              localStorage.setItem(
-                REACT_APP_LOCALACCESS,
-                result.data.access_token
-              );
 
+         
+          // refresh tokenla oynayınca hata mesajı undefined
+         
+          postMethod("auth/token",null,{refreshToken:refreshToken}).then((result) => {
+            console.log(result)
+              setToken(result.data.access_token);
+              
               axios.defaults.headers.common["Authorization"] =
                 "Bearer:" + result.data.access_token;
               originalRequest.headers["Authorization"] =
@@ -97,6 +102,8 @@ axios.interceptors.response.use(
               resolve(axios(originalRequest));
             })
             .catch((err) => {
+
+              console.log(err.response)
               processQueue(err, null);
               reject(err);
             })

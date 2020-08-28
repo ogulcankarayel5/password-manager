@@ -29,7 +29,8 @@ const Login = (props) => {
   };
   const { theme } = props;
 
-  const submit = () => {
+  const submit = (e) => {
+    e.preventDefault();
     console.log("hyyysbumt");
   };
 

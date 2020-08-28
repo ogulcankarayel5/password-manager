@@ -1,8 +1,9 @@
 
-import {postMethod} from '../API'
+import {postMethod,getMethod} from '../API'
 
 
-const refreshToken = async(refreshToken) => {
+
+const refreshToken = async (refreshToken) => {
 
   console.log(refreshToken)
   const response = await postMethod("auth/token",null,{refreshToken:refreshToken});
@@ -23,6 +24,13 @@ const login = async (user) => {
  
 };
 
+const logout = async () => {
+  
+  const response = await getMethod("auth/logout",null);
+  console.log(response);
+  return response.data;
+}
+
 const register = async (user) => {
   const response = await postMethod("auth/register",null,user);
   return response;
@@ -33,5 +41,6 @@ export const userService = {
   login,
   loginWithGoogle,
   register,
-  refreshToken
+  refreshToken,
+  logout
 };
