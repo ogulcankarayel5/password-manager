@@ -1,15 +1,14 @@
-import client from '../services/client'
-import { generateApiEndpoint} from "../utils";
+import client from '../services/client';
 
 
 
 const callAxios = async (method,endpoint,params=null,data=null) => {
 
-  const newEndpoint = generateApiEndpoint(endpoint);
+ 
     return new Promise(function (resolve, reject) {
       const config = {
         method:method,
-        url:`${newEndpoint}?${params}`,
+        url:`${endpoint}?${params}`,
         data:data
       }
       client(config)

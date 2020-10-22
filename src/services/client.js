@@ -1,13 +1,14 @@
 import axios from "axios";
-
-import { setToken } from "../utils";
 import Cookies from "universal-cookie";
-import { generateApiEndpoint,store } from "../utils";
-import { authActions } from './../store/actions/authActions';
-import callAxios from './../API/callAxios';
 import { postMethod } from "../API";
+import { setToken, store } from "../utils";
+import { authActions } from './../store/actions/authActions';
+
 const cookies = new Cookies();
 const { REACT_APP_LOCALACCESS } = process.env;
+
+
+const axiosInstance = axios.create({ baseURL: "http://luckypassword.me/api" });
 
 let isRefreshing = false;
 let failedQueue = [];
@@ -24,7 +25,7 @@ const processQueue = (error, accessToken = null) => {
   failedQueue = [];
 };
 
-axios.interceptors.request.use(async (config) => {
+axiosInstance.interceptors.request.use(async (config) => {
   const accessToken = localStorage.getItem(REACT_APP_LOCALACCESS);
 
   if (accessToken) {
@@ -33,7 +34,7 @@ axios.interceptors.request.use(async (config) => {
   return config;
 });
 
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   async (response) => {
     return response;
   },
@@ -70,7 +71,7 @@ axios.interceptors.response.use(
               originalRequest.headers["Authorization"] =
                 "Bearer:" + accessToken;
               console.log("access: " + accessToken);
-              return axios(originalRequest);
+              return axiosInstance(originalRequest);
             })
             .catch((err) => {
               console.log("err");
@@ -93,13 +94,13 @@ axios.interceptors.response.use(
             console.log(result)
               setToken(result.data.access_token);
               
-              axios.defaults.headers.common["Authorization"] =
+              axiosInstance.defaults.headers.common["Authorization"] =
                 "Bearer:" + result.data.access_token;
               originalRequest.headers["Authorization"] =
                 "Bearer:" + result.data.access_token;
 
               processQueue(null, result.data.access_token);
-              resolve(axios(originalRequest));
+              resolve(axiosInstance(originalRequest));
             })
             .catch((err) => {
 
@@ -122,4 +123,4 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export default axios;
+export default axiosInstance;
