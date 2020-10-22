@@ -8,7 +8,7 @@ const cookies = new Cookies();
 const { REACT_APP_LOCALACCESS } = process.env;
 
 
-const axiosInstance = axios.create({ baseURL: "http://luckypassword.me/api" });
+const axiosInstance = axios.create({ baseURL: "https://luckypassword.me/api" });
 
 let isRefreshing = false;
 let failedQueue = [];
