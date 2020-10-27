@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
+
+import lazy from "./lazy";
 import BounceLoader from "react-spinners/BounceLoader";
 import { CenterComponent } from "../components/auth/style";
-import lazy from "./lazy";
 
-
+import img from "../assets/images/form.png";
 const ProtectedRoute = lazy(() => import("./"), "ProtectedRoute");
 const AppRoute = lazy(() => import("./"), "AppRoute");
 const FormLayout = lazy(() => import("../components"), "FormLayout");

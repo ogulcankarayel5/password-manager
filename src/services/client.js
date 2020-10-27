@@ -9,7 +9,7 @@ const { REACT_APP_LOCALACCESS } = process.env;
 
 
 const axiosInstance = axios.create({ baseURL: "https://luckypassword.me/api" });
-axiosInstance.defaults.withCredentials = true;
+
 let isRefreshing = false;
 let failedQueue = [];
 

@@ -1,8 +1,8 @@
-import Cookies from "universal-cookie";
-import { errorActions } from ".";
 import { authConstants } from "../../constants";
-import { accountService, userService } from "../../services";
-import { getTokens, history, removeTokens, setToken } from "../../utils";
+import Cookies from "universal-cookie";
+import { userService, accountService } from "../../services";
+import { history, getTokens,setToken,removeTokens } from "../../utils";
+import { errorActions } from ".";
 const cookies = new Cookies();
 //plain actions
 
@@ -139,9 +139,9 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
     dispatch(loginSuccess(response));
     history.push("/");
   } catch (err) {
-    console.log(err);
+    console.log(err.response);
     dispatch(loginFailure());
-    //dispatch(errorActions.setErrors(err.response));
+    dispatch(errorActions.setErrors(err.response));
   }
 };
 
