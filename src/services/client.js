@@ -7,7 +7,7 @@ import { authActions } from './../store/actions/authActions';
 const { REACT_APP_LOCALACCESS,REACT_APP_REACT_ENV } = process.env;
 
 
-const axiosInstance = axios.create({ baseURL:REACT_APP_REACT_ENV === "development" ? "http://localhost:5000/api" : "http://luckypassword.me/api"  });
+const axiosInstance = axios.create({ baseURL:REACT_APP_REACT_ENV === "development" ? "http://localhost:5000/api" : "https://luckypassword.me/api"  });
 axiosInstance.defaults.withCredentials = true
 let isRefreshing = false;
 let failedQueue = [];
