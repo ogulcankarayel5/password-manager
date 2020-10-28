@@ -1,14 +1,13 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { postMethod } from "../API";
 import { setToken, store } from "../utils";
 import { authActions } from './../store/actions/authActions';
 
-const cookies = new Cookies();
-const { REACT_APP_LOCALACCESS } = process.env;
+
+const { REACT_APP_LOCALACCESS,REACT_APP_REACT_ENV } = process.env;
 
 
-const axiosInstance = axios.create({ baseURL: "http://localhost:5000/api" });
+const axiosInstance = axios.create({ baseURL:REACT_APP_REACT_ENV === "development" ? "http://localhost:5000/api" : "http://luckypassword.me/api"  });
 axiosInstance.defaults.withCredentials = true
 let isRefreshing = false;
 let failedQueue = [];
