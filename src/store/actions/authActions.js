@@ -1,8 +1,8 @@
-import { authConstants } from "../../constants";
 import Cookies from "universal-cookie";
-import { userService, accountService } from "../../services";
-import { history, getTokens,setToken,removeTokens } from "../../utils";
 import { errorActions } from ".";
+import { authConstants } from "../../constants";
+import { accountService, userService } from "../../services";
+import { getTokens, history, removeTokens, setToken } from "../../utils";
 const cookies = new Cookies();
 //plain actions
 
@@ -95,10 +95,10 @@ const initializeUser = () => async (dispatch) => {
     console.log("heyyy")
     const user = await accountService.getCurrentUser();
     console.log("heyyy")
-    const { accessToken, refreshToken } = getTokens();
-    console.log(accessToken + "heyyy " + refreshToken);
+    const { accessToken } = getTokens();
+    console.log(accessToken );
     const payload = {
-      refresh_token: refreshToken,
+      
       access_token: accessToken,
       data: user,
     };

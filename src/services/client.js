@@ -50,8 +50,9 @@ axiosInstance.interceptors.response.use(
       if (error.response.status===401 && data.message === "Invalid refresh token") {
         console.log("unauthorized");
        store.dispatch(authActions.logout());
-        return;
+        return error.response;
       }
+      
       if(error.response.status === 401 && data.message === "You are not authorized to access this route,you don't have a valid refresh token to create new access token "){
         console.log("invalid refresh token");
         console.log(error.response)
