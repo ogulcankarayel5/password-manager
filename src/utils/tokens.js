@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
-
-import { store } from "./";
 import Cookies from "universal-cookie";
+import { store } from "./";
 import { userService } from "./../services/auth.service";
 import { authActions } from "./../store/actions/authActions";
+
 
 const cookies = new Cookies();
 
@@ -22,8 +22,8 @@ export const getTokens = () => {
   const { REACT_APP_LOCALACCESS, REACT_APP_REFRESHTOKEN } = process.env;
   const accessToken = localStorage.getItem(REACT_APP_LOCALACCESS);
 
-  const refreshToken = cookies.get(REACT_APP_REFRESHTOKEN);
-  return { accessToken, refreshToken };
+  //const refreshToken = cookies.get(REACT_APP_REFRESHTOKEN);
+  return { accessToken };
 };
 
 export const setToken = (accessToken) => {
@@ -32,11 +32,11 @@ export const setToken = (accessToken) => {
 };
 
 export const removeTokens = () => {
-  const { REACT_APP_LOCALACCESS, REACT_APP_REFRESHTOKEN } = process.env;
+  const { REACT_APP_LOCALACCESS } = process.env;
 
   return new Promise(function (resolve, reject) {
     localStorage.removeItem(REACT_APP_LOCALACCESS);
-    cookies.remove(REACT_APP_REFRESHTOKEN);
+   
     resolve();
   }).catch((err) => {
     console.log(err);
@@ -46,36 +46,30 @@ export const removeTokens = () => {
   //cookies.remove(REACT_APP_REFRESHTOKEN);
 };
 
-const { accessToken, refreshToken } = getTokens();
+const { accessToken } = getTokens();
 
 export const isTokensExpired = () => {
   let hasTokenExpired = accessToken ? isTokenExpired(accessToken) : true;
-  let hasRefreshTokenExpired = refreshToken
-    ? isTokenExpired(refreshToken)
-    : true;
-  return { hasTokenExpired, hasRefreshTokenExpired };
+  
+  return { hasTokenExpired};
 };
 
 export const isTokensDefined = () => {
-  if (
-    (!accessToken && !refreshToken) ||
-    (accessToken && !refreshToken) ||
-    (accessToken === undefined && refreshToken === undefined) ||
-    (accessToken !== undefined && refreshToken === undefined)
-  ) {
+
+  if(!accessToken && accessToken===undefined) {
     console.log("no token");
 
     store.dispatch(authActions.logout());
 
     return true;
-    //return setBusy(false)
+    
   } else {
     return false;
   }
 };
 
 export const isTokenValid = () => {
-  if ((accessToken && refreshToken) || (!accessToken && refreshToken)) {
+  if (accessToken ) {
     console.log("initialize user in else");
     store.dispatch(authActions.initializeUser());
     return;
@@ -83,11 +77,11 @@ export const isTokenValid = () => {
 };
 
 export const setTokens = async () => {
-  const { hasRefreshTokenExpired, hasTokenExpired } = isTokensExpired();
-  if (hasTokenExpired && !hasRefreshTokenExpired) {
+  const {  hasTokenExpired } = isTokensExpired();
+  if (hasTokenExpired) {
     try {
       console.log("hastokenexpired");
-      const result = await userService.refreshToken(refreshToken);
+      const result = await userService.refreshToken();
       //burada localstorage atmazsak register olduğu zaman ki tokenı kullanıyor ve 401 hatası oluyor
 
       console.log("access: " + result.data.access_token);

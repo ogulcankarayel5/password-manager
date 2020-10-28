@@ -1,6 +1,6 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Redirect, Route } from "react-router-dom";
 
 export const ProtectedRoute = ({
   component: Component,
@@ -16,7 +16,7 @@ export const ProtectedRoute = ({
     <Route
       {...rest}
       render={(props) =>
-        (isAuthenticated === true || (isAuthenticated===false && refreshToken)) ? (
+        (isAuthenticated === true ) ? (
           <Layout>
             <Component {...props} />
           </Layout>

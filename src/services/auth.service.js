@@ -1,12 +1,12 @@
 
-import {postMethod,getMethod} from '../API'
+import { getMethod, postMethod } from '../API';
 
 
 
-const refreshToken = async (refreshToken) => {
+const refreshToken = async () => {
 
   console.log(refreshToken)
-  const response = await postMethod("auth/token",null,{refreshToken:refreshToken});
+  const response = await postMethod("auth/token",null,null);
   console.log("in service: "+ response)
   return response;
 

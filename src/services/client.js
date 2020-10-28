@@ -8,8 +8,8 @@ const cookies = new Cookies();
 const { REACT_APP_LOCALACCESS } = process.env;
 
 
-const axiosInstance = axios.create({ baseURL: "https://luckypassword.me/api" });
-
+const axiosInstance = axios.create({ baseURL: "http://localhost:5000/api" });
+axiosInstance.defaults.withCredentials = true
 let isRefreshing = false;
 let failedQueue = [];
 
@@ -39,16 +39,15 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const { REACT_APP_LOCALACCESS, REACT_APP_REFRESHTOKEN } = process.env;
+   
     const { status, data } = error.response;
     // console.log(error.config._retry);
     const originalRequest = error.config;
     // console.log(status);
     // console.log(data);
-    const refreshToken = cookies.get(REACT_APP_REFRESHTOKEN);
+    //const refreshToken = cookies.get(REACT_APP_REFRESHTOKEN);
    
-    if (refreshToken) {
-      console.log(refreshToken)
+ 
       if (error.response.status===401 && data.message === "Invalid refresh token") {
         console.log("unauthorized");
        store.dispatch(authActions.logout());
@@ -90,8 +89,9 @@ axiosInstance.interceptors.response.use(
          
           // refresh tokenla oynayınca hata mesajı undefined
          
-          postMethod("auth/token",null,{refreshToken:refreshToken}).then((result) => {
-            console.log(result)
+          postMethod("auth/token",null,null).then((result) => {
+            console.log("result:",result)
+
               setToken(result.data.access_token);
               
               axiosInstance.defaults.headers.common["Authorization"] =
@@ -117,7 +117,7 @@ axiosInstance.interceptors.response.use(
 
       console.log("unauthroized");
      
-    }
+  
     console.log("unauthroized");
 
     return Promise.reject(error);
