@@ -1,8 +1,8 @@
 import React from 'react'
-import {Input} from './styles'
+import { Input } from './styles'
 
 
-export const FormInput = React.memo(({name,type,placeholder,value,onChange,onBlur,icon,className,ariaLabel}) => {
+export const FormInput = ({name,type,placeholder,value,onChange,onBlur,icon,className,ariaLabel}) => {
  
   return (
       <>
@@ -11,5 +11,5 @@ export const FormInput = React.memo(({name,type,placeholder,value,onChange,onBlu
       
       </>
   )
-})
+}
 

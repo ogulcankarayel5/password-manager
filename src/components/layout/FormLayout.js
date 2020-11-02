@@ -1,9 +1,8 @@
 import React from "react";
-
+import { FormSide, FormWrapper } from "../../components";
+import { ResponsiveImage, Title } from "../../shared";
 import { FormLayoutContainer, ImgSide } from "./styles";
-import { ResponsiveImage } from "../../shared";
-import { FormWrapper, FormSide } from "../../components";
-import { Title } from "../../shared";
+
 export const FormLayout = ({ children, img }) => {
 
 

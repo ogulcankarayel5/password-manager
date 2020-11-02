@@ -1,8 +1,33 @@
 
-import styled from "styled-components";
-import img from '../../assets/images/bg1.png';
-import {motion} from 'framer-motion'
+import styled, { keyframes } from "styled-components";
 
+
+const slideInLeft = keyframes`
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+`;
+
+// animation to slide out the home page to the left
+const slideOutLeft = keyframes`
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+`;
 const CommonLayoutContainer = styled.div`
   height: 100vh;
   display: grid;
@@ -21,6 +46,14 @@ const FormLayoutContainer = styled.div`
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  
+  &.page-enter {
+    animation: ${slideInLeft} 0.2s forwards;
+  }
+  &.page-exit {
+    animation: ${slideOutLeft} 0.2s forwards;
+  }
   
 `;
 
@@ -33,4 +66,5 @@ const ImgSide = styled.div`
 `;
 
 
-export {CommonLayoutContainer,FormLayoutContainer,ImgSide}
+export { CommonLayoutContainer, FormLayoutContainer, ImgSide };
+

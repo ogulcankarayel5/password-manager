@@ -24,6 +24,7 @@
     "react-scripts": "^3.4.4",
     "react-spinners": "^0.8.3",
     "react-toastify": "^6.0.4",
+    "react-transition-group": "^4.4.1",
     "reaptcha": "^1.7.2",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
@@ -38,7 +39,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
- 
   "eslintConfig": {
     "extends": "react-app"
   },

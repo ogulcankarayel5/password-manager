@@ -1,6 +1,6 @@
 
-import styled,{css} from 'styled-components'
-import {Title,Button,Text} from '../../shared'
+import styled, { css } from 'styled-components';
+import { Button, Text, Title } from '../../shared';
 
 //MainContent
 const MainContainer = styled.div`
@@ -58,4 +58,5 @@ flex:1;
 
 `
 
-export {RightContainer,MainButton,MainParagraph,MainContainer,LeftContainer,MainTitle}
+export { RightContainer, MainButton, MainParagraph, MainContainer, LeftContainer, MainTitle };
+
