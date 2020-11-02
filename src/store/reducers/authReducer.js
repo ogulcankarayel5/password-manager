@@ -13,21 +13,20 @@ const initialState = {
 };
 export function authReducer(state = initialState, action) {
   switch (action.type) {
-    case authConstants.REGISTER_REQUEST:
-    case authConstants.LOGIN_REQUEST:
-    case authConstants.INITIALIZE_REQUEST:
+    case authConstants.REQUEST:
+   
      
       return {
         ...state,
-        access_token: null,
+       
        
         loading: true,
-        isAuthenticated: false,
-        user: null,
+        
       };
     case authConstants.REGISTER_SUCCESS:
     case authConstants.LOGIN_SUCCESS:
     case authConstants.INITIALIZE_SUCCESS:
+    case authConstants.REFRESH_TOKEN_SUCCESS:
      
       return {
         ...state,
@@ -40,6 +39,7 @@ export function authReducer(state = initialState, action) {
     case authConstants.INITIALIZE_ERROR:
     case authConstants.LOGIN_ERROR:
     case authConstants.REGISTER_ERROR:
+    case authConstants.REFRESH_TOKEN_FAILURE:
       return {
         ...state,
         access_token: null,
@@ -47,6 +47,12 @@ export function authReducer(state = initialState, action) {
         loading: false,
         isAuthenticated: false,
         user: null,
+      };
+    case authConstants.RESET_PASSWORD_SUCCESS:
+    case authConstants.RESET_PASSWORD_FAILURE:
+      return {
+        ...state,
+        loading:false
       };
 
     default:

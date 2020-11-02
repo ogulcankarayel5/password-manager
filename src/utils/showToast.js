@@ -1,8 +1,8 @@
-import React from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
-export const ShowToast = React.memo(({ type, message }) => {
+
+
+
   const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -12,7 +12,7 @@ export const ShowToast = React.memo(({ type, message }) => {
     draggable: true,
     progress: undefined,
   };
-  const showToast = () => {
+ export const showToast = (type, message) => {
     switch (type) {
       case "success":
         toast.success(message, toastOptions);
@@ -28,15 +28,4 @@ export const ShowToast = React.memo(({ type, message }) => {
     }
   };
 
-  return (
-    <>
-      <ToastContainer />
-      {showToast()}
-    </>
-  );
-},(prevProps,nextProps)=>{
-  if(prevProps.message === nextProps.message){
-    return true;
-  }
-}
-)
+

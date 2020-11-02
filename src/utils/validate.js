@@ -2,26 +2,6 @@ export function validate(values, formType) {
   let errors = {};
 
 
-  switch(values){
-    case 'username':
-      if (!values.username.trim()) {
-        errors.username = "Required username";
-      } else if (values.username.length < 5) {
-        errors.username = "Username must be at least 5 characters";
-      }
-    case 'password':
-      if (!values.password.trim()) {
-        errors.password = "Required Password";
-      } else if (values.password.length < 6) {
-        errors.password = "Password must be at least 6 characters";
-      }
-    case 'email':
-      if (!values.email.trim()) {
-        errors.email = "Required Email";
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-        errors.email = "Invalid email address";
-      }
-  }
   
   // Email Errors
   if (formType === "register") {
@@ -32,18 +12,22 @@ export function validate(values, formType) {
     }
   }
   // Password Errors
-  if (!values.password.trim()) {
-    errors.password = "Required Password";
-  } else if (values.password.length < 6) {
-    errors.password = "Password must be at least 6 characters";
-  }
+  
+    if (!values.password.trim()) {
+      errors.password = "Required Password";
+    } else if (values.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+  
 
   //username
+ if(formType!=="resetPassword"){
   if (!values.username.trim()) {
     errors.username = "Required username";
   } else if (values.username.length < 5) {
     errors.username = "Username must be at least 5 characters";
   }
+ }
   return errors;
 }
 

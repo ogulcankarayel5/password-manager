@@ -1,10 +1,7 @@
 import jwt from "jsonwebtoken";
 import Cookies from "universal-cookie";
 import { store } from "./";
-import { userService } from "./../services/auth.service";
 import { authActions } from "./../store/actions/authActions";
-
-
 const cookies = new Cookies();
 
 export const isTokenExpired = (accessToken) => {
@@ -28,6 +25,7 @@ export const getTokens = () => {
 
 export const setToken = (accessToken) => {
   const { REACT_APP_LOCALACCESS } = process.env;
+  console.log("settoken")
   localStorage.setItem(REACT_APP_LOCALACCESS, accessToken);
 };
 
@@ -56,7 +54,7 @@ export const isTokensExpired = () => {
 
 export const isTokensDefined = () => {
 
-  if(!accessToken && accessToken===undefined) {
+  if(!accessToken || accessToken===undefined) {
     console.log("no token");
 
     store.dispatch(authActions.logout());
@@ -69,11 +67,11 @@ export const isTokensDefined = () => {
 };
 
 export const isTokenValid = () => {
-  if (accessToken ) {
+ 
     console.log("initialize user in else");
     store.dispatch(authActions.initializeUser());
     return;
-  }
+  
 };
 
 export const setTokens = async () => {
@@ -81,16 +79,17 @@ export const setTokens = async () => {
   if (hasTokenExpired) {
     try {
       console.log("hastokenexpired");
-      const result = await userService.refreshToken();
+      //const result = await userService.refreshToken();
       //burada localstorage atmazsak register olduğu zaman ki tokenı kullanıyor ve 401 hatası oluyor
 
-      console.log("access: " + result.data.access_token);
-
-      store.dispatch(authActions.initializeUser());
+      
+      //will be replaced by refreshtoken action
+      //store.dispatch(authActions.initializeUser());
+      store.dispatch(authActions.refreshToken())
       console.log("initialize");
       return;
     } catch (err) {
-      console.log(err);
+      console.log("err in set tokens:" ,err);
 
       store.dispatch(authActions.logout());
       //history.push("/unauthorized");
